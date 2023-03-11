@@ -1,0 +1,57 @@
+.navbar-expand-lg .navbar-nav .nav-link,
+.landing h2,
+.landing h2 p,
+.about-us p,
+.our-vision h2,
+.our-vision p,
+.our-mission h2,
+.about-us h2,
+.our-mission p,
+.text-light,
+.portfolio h2,
+.contact-us h2,
+.contact-us button{
+    color: #1d1c1c !important;
+}
+
+.landing h2 button,
+.about-us,
+.our-vision,
+.our-mission,
+.bg-dark,
+.our-task,
+.contact-us,
+.maps
+ {
+    background-color: #f8f9fa !important;
+}
+.our-vision span:not(.not),
+.about-us span:not(.not),
+.our-mission span:not(.not),
+.portfolio span:not(.not),
+.services span:not(.not),
+.why-us span,
+.contact-us form input,
+.contact-us textarea
+ {
+    background-color: #1d1c1c !important;
+}
+.l-c {
+    
+    background-color: #ffffff36;
+}
+.nav-d {
+    background: #fcfcfc7a;
+   }
+.navbar svg:not(:host).svg-inline--fa, .navbar svg:not(:root).svg-inline--fa {
+       color: black;
+  }
+@media (max-width: 991px){
+.navbar .navbar-collapse {
+     background: #b4b2ae8a;
+    
+}}
+.details .svg-inline--fa {
+    background-color: #131416a6;
+   
+}

@@ -1,0 +1,11 @@
+{
+    "Dashboard": true,
+    "Accounts": true,
+    "Settings": true,
+    "Roles": true,
+    "Categories": true,
+    "Sliders": true,
+    "Blogs": true,
+    "Countries": true,
+    "Orders": true
+}

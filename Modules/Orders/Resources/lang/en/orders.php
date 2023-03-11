@@ -1,0 +1,53 @@
+<?php
+
+return [
+    'singular' => 'Order',
+    'plural' => 'Orders',
+    'empty' => 'There are no Orders yet.',
+    'count' => 'Orders count',
+    'search' => 'Search',
+    'select' => 'Select Order',
+    'perPage' => 'Orders Per Page',
+    'filter' => 'Search for Order',
+    'actions' => [
+        'list' => 'List all',
+        'create' => 'Create Order',
+        'show' => 'Show Order',
+        'edit' => 'Edit Order',
+        'delete' => 'Delete Order',
+        'options' => 'Options',
+        'save' => 'Save',
+        'filter' => 'Filter',
+    ],
+    'messages' => [
+        'created' => 'The Order has been created successfully.',
+        'updated' => 'The Order has been updated successfully.',
+        'deleted' => 'The Order has been deleted successfully.',
+        'images_note' => 'Supported types: jpeg, png,jpg | Max File Size:10MB',
+    ],
+    'attributes' => [
+        'image' => 'Order Image',
+        'name' => 'Order Name',
+        'description' => 'Description',
+        'expected_start_price' => 'Expected Start Price',
+        'expected_end_price' => 'Expected End Price',
+        'phone' => 'Phone',
+        'type' => 'Type',
+        'contact_type' => 'Contact Type',
+        'quantity' => 'Quantity',
+        'status' => 'Status',
+        'category_id' => 'Category',
+        'sub_category_id' => 'Sub Category',
+        'service_id' => 'Service',
+        'country_id' => 'Country',
+        'city_id' => 'City',
+    ],
+    'dialogs' => [
+        'delete' => [
+            'title' => 'Warning !',
+            'info' => 'Are you sure you want to delete the Order ?',
+            'confirm' => 'Delete',
+            'cancel' => 'Cancel',
+        ],
+    ],
+];

@@ -1,0 +1,45 @@
+.navbar-expand-lg .navbar-nav .nav-link,
+.landing h2,
+.landing h2 p,
+.about-us p,
+.our-vision h2,
+.our-vision p,
+.our-mission h2,
+.about-us h2,
+.our-mission p,
+.text-light,
+.portfolio h2,
+.portfolio ul li,
+.our-task h2,
+.our-task  p,
+.why-us h2{
+    color: #f8f9fa !important
+}
+.landing h2 button,
+.about-us,
+.our-mission,
+.portfolio,
+.why-us span
+ {
+    background-color: #1d1c1c;
+}
+.our-vision span:not(.not),
+.about-us span:not(.not),
+.our-mission span:not(.not),
+.portfolio span:not(.not),
+.why-us span,
+.why-us .sec-cont::before {
+    background-color: #f8f9fa !important; 
+}
+.footer .l-c {
+ background-color: #00000080;
+}
+.services{
+   background-color:#1d1c1c ;
+}
+.services h2{
+    color:#f8f9fa  ;
+}
+.why-us {
+    background-color: #34373b;
+}
