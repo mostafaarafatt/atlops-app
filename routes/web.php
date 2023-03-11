@@ -19,5 +19,5 @@ Route::impersonate();
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/', function() {
-    dd('Welcome Atlops');
+    dd('wait Atlops frontend');
 })->name('home');
