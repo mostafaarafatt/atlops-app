@@ -66,6 +66,7 @@ class User extends Authenticatable implements HasMedia, HasLocalePreference
         'name',
         'last_name',
         'bio',
+        'dob',
         'kind',
         'email',
         'phone',
