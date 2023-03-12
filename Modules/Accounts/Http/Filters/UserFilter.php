@@ -13,8 +13,10 @@ class UserFilter extends BaseFilters
      */
     protected $filters = [
         'name',
+        'last_name',
         'email',
         'phone',
+        'kind',
     ];
 
     /**
@@ -27,6 +29,21 @@ class UserFilter extends BaseFilters
     {
         if ($value) {
             return $this->builder->where('name', 'like', "%$value%");
+        }
+
+        return $this->builder;
+    }
+
+    /**
+     * Filter the query by a given name.
+     *
+     * @param string|int $value
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    protected function last_name($value)
+    {
+        if ($value) {
+            return $this->builder->where('last_name', 'like', "%$value%");
         }
 
         return $this->builder;
@@ -57,6 +74,21 @@ class UserFilter extends BaseFilters
     {
         if ($value) {
             return $this->builder->where('phone', 'like', "%$value%");
+        }
+
+        return $this->builder;
+    }
+
+    /**
+     * Filter the query to include users by phone.
+     *
+     * @param string|int $value
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    protected function kind($value)
+    {
+        if ($value) {
+            return $this->builder->where('kind', $value);
         }
 
         return $this->builder;

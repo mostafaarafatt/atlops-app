@@ -12,12 +12,12 @@
             'isActive' => request()->routeIs('*users.index'),
             'module' => 'Accounts',
         ],
-        [
-            'name' => trans('accounts::user.actions.create'),
-            'url' => route('dashboard.users.create'),
-            'can' => ['permission' => 'create_users'],
-            'isActive' => request()->routeIs('*users.create'),
-            'module' => 'Accounts',
-        ],
+        // [
+        //     'name' => trans('accounts::user.actions.create'),
+        //     'url' => route('dashboard.users.create'),
+        //     'can' => ['permission' => 'create_users'],
+        //     'isActive' => request()->routeIs('*users.create'),
+        //     'module' => 'Accounts',
+        // ],
     ])
 @endcomponent

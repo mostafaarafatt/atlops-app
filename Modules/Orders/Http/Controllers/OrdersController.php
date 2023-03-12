@@ -7,6 +7,8 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Categories\Entities\Category;
+use Modules\Countries\Entities\Country;
 use Modules\Orders\Entities\Order;
 use Modules\Orders\Http\Requests\OrderRequest;
 use Modules\Orders\Repositories\OrderRepository;
@@ -45,8 +47,9 @@ class OrdersController extends Controller
     public function index()
     {
         $orders = $this->repository->all();
-
-        return view('orders::orders.index', compact('orders'));
+        $categories = Category::pluck('name', 'id')->toArray();
+        // $countries = Country::pluck('name', 'id')->toArray();
+        return view('orders::orders.index', get_defined_vars());
     }
 
     /**

@@ -10,6 +10,27 @@
             {{ BsForm::text('description')->value(request('description'))->label(trans("orders::orders.attributes.description")) }}
         </div>
         <div class="col-md-3">
+            {{ BsForm::text('phone')->value(request('phone'))->label(trans("orders::orders.attributes.phone")) }}
+        </div>
+        <div class="col-md-3">
+            {{ BsForm::select('type')->options([
+                'company' => __('company'),
+                'individual' => __('individual')
+            ])->label(trans("orders::orders.attributes.type")) }}
+        </div>
+        <div class="col-md-3">
+            {{ BsForm::select('status')->options([
+                'active' => __('active'),
+                'completed' => __('completed')
+            ])->label(trans("orders::orders.attributes.status")) }}
+        </div>
+        <div class="col-md-3">
+            {{ BsForm::select('category')->options($categories)->label(trans("orders::orders.attributes.category_id")) }}
+        </div>
+        {{-- <div class="col-md-3">
+            {{ BsForm::select('country')->options($countries)->label(trans("orders::orders.attributes.country_id")) }}
+        </div> --}}
+        <div class="col-md-3">
             {{ BsForm::number('perPage')
                 ->value(request('perPage', 15))
                 ->min(1)

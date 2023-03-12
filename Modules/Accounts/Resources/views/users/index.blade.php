@@ -19,16 +19,17 @@
 
             @slot('tools')
                 {{-- @include('accounts::users.partials.actions.trashed') --}}
-                @include('accounts::users.partials.actions.create')
+                {{-- @include('accounts::users.partials.actions.create') --}}
             @endslot
 
             <thead>
             <tr>
-                <th>@lang('accounts::user.attributes.name')</th>
+                <th>@lang('Name')</th>
+                <th>@lang('accounts::user.attributes.kind')</th>
                 <th>@lang('accounts::user.attributes.email')</th>
                 <th>@lang('accounts::user.attributes.phone')</th>
                 <th>@lang('accounts::user.attributes.verified')</th>
-                <th>@lang('accounts::user.attributes.created_at')</th>
+                <th>@lang('accounts::user.attributes.dob')</th>
                 <th>...</th>
             </tr>
             </thead>
@@ -46,16 +47,17 @@
                                 </div>
                                 <div class="ml-4">
                                     <div class="text-dark-75 mb-0">
-                                        {{ $user->name }}
+                                        {{ $user->name . " " . $user->last_name}}
                                     </div>
                                 </div>
                             </div>
                         </a>
                     </td>
+                    <td>{{ __($user->kind) }}</td>
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->phone }}</td>
                     <td>@include('accounts::users.partials.flags.verified')</td>
-                    <td>{{ $user->created_at->format('Y-m-d') }}</td>
+                    <td>{{ $user->dob }}</td>
 
                     <td>
                         @include('accounts::users.partials.actions.show')

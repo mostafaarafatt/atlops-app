@@ -19,6 +19,14 @@
                     <td>{{ $user->name }}</td>
                 </tr>
                 <tr>
+                    <th width="200">@lang('accounts::user.attributes.last_name')</th>
+                    <td>{{ $user->last_name }}</td>
+                </tr>
+                <tr>
+                    <th width="200">@lang('accounts::user.attributes.kind')</th>
+                    <td>{{ __($user->kind) }}</td>
+                </tr>
+                <tr>
                     <th width="200">@lang('accounts::user.attributes.email')</th>
                     <td>{{ $user->email }}</td>
                 </tr>
@@ -27,20 +35,21 @@
                     <td>{{ $user->phone }}</td>
                 </tr>
                 <tr>
-                    <th width="200">@lang('accounts::user.attributes.type')</th>
-                    <td>{{ $user->user_type->type }}</td>
+                    <th width="200">@lang('accounts::user.attributes.kind')</th>
+                    <td>{{ $user->kind }}</td>
                 </tr>
                 <tr>
-                    <th width="200">@lang('accounts::user.attributes.can_access')</th>
-                    <td>@include('accounts::users.partials.flags.can_access')</td>
+                    <th width="200">@lang('accounts::user.attributes.bio')</th>
+                    <td>{{ $user->bio }}</td>
                 </tr>
-                @if ($user->can_access)
-                    <tr>
-                        <th width="200">@lang('accounts::user.attributes.username')</th>
-                        <td>{{ $user->username }}</td>
-                    </tr>
-                @endif
-
+                <tr>
+                    <th width="200">@lang('accounts::user.attributes.dob')</th>
+                    <td>{{ $user->dob }}</td>
+                </tr>
+                <tr>
+                    <th width="200">@lang('accounts::user.attributes.verified')</th>
+                    <td>@include('accounts::users.partials.flags.verified')</td>
+                </tr>
                 <tr>
                     <th width="200">@lang('accounts::user.attributes.avatar')</th>
                     <td>

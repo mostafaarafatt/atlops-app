@@ -7,10 +7,19 @@
             {{ BsForm::text('name')->value(request('name'))->label(trans('accounts::user.attributes.name')) }}
         </div>
         <div class="col-md-3">
+            {{ BsForm::text('last_name')->value(request('last_name'))->label(trans('accounts::user.attributes.last_name')) }}
+        </div>
+        <div class="col-md-3">
             {{ BsForm::text('email')->value(request('email'))->label(trans('accounts::user.attributes.email')) }}
         </div>
         <div class="col-md-3">
             {{ BsForm::text('phone')->value(request('phone'))->label(trans('accounts::user.attributes.phone')) }}
+        </div>
+        <div class="col-md-3">
+            {{ BsForm::select('kind')->options([
+                'client' => __('client'),
+                'provider' => __('provider'),
+            ])->label(trans('accounts::user.attributes.kind')) }}
         </div>
         <div class="col-md-3">
             {{ BsForm::number('perPage')
