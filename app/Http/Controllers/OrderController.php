@@ -12,7 +12,7 @@ use App\Models\Order;
 use App\Models\Servicescategory;
 use App\Models\Subcategory;
 use App\Models\Town;
-use App\Models\User;
+use Modules\Accounts\Entities\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 

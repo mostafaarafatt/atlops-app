@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+// use Modules\Accounts\Entities\User;
 use Illuminate\Http\Request;
 
 class WebNotificationController extends Controller

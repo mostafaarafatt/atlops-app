@@ -6,7 +6,7 @@ use App\Events\OtpSent;
 use App\Http\Requests\ConfirmCodeRequest;
 use App\Http\Requests\NewPasswordRequest;
 use App\Http\Requests\ValidateEmail;
-use App\Models\User;
+use Modules\Accounts\Entities\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
