@@ -10,4 +10,5 @@ Route::middleware('auth')->group(function () {
     include __DIR__ . '/order.php';
     include __DIR__ . '/chat.php';
     include __DIR__ . '/my-account.php';
+    include __DIR__ . '/notification.php';
 });

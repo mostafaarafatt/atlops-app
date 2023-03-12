@@ -1,19 +1,18 @@
 <!doctype html>
-<html lang="ar">
+<html lang="{{app()->getLocale()}}">
 
 <head>
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    @include('layouts.head')
+    @include('frontend.layouts.head')
     @yield('head_script')
 </head>
 
 <body>
-    @include('layouts.upperNavbar')
-    
+    @include('frontend.layouts.upperNavbar')
     @yield('content')
-    @yield('categories')
-    @include('layouts.lowerNavbar')
-    @include('layouts.scripts')
+
+    @include('frontend.layouts.lowerNavbar')
+    @include('frontend.layouts.scripts')
     @yield('scripts')
 </body>
 

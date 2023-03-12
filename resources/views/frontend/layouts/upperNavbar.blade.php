@@ -19,35 +19,43 @@
 
                              <ul class="dropdown-menu notification-menu my-0 py-0 shadow"
                                  aria-labelledby="dropdownMenuButton1">
+                                 @auth
 
-                                 @foreach (auth()->user()->unreadNotifications as $notification)
-                                     <li class="">
-                                         <a class="d-flex p-2 active w-100"
-                                             href="orderNotificationDetails/{{ $notification->data['order_id'] }}/{{ $notification->id }}">
-                                             <img src="{{ asset('Attachments/user/' . $notification->data['user_img']) }}"
-                                                 width="40" height="40" style="border-radius: 50%;">
-                                             <div class=" mx-2">
-                                                 <h6 class="mb-0 name">{{ $notification->data['user_fname'] }}
-                                                     {{ $notification->data['user_lname'] }}</h6>
-                                                 <p class="time text-end mt-1 text-dark">{{ $notification->created_at }}
+                                     @foreach (auth()?->user()?->unreadNotifications as $notification)
+                                         <li class="">
+                                             <a class="d-flex p-2 active w-100"
+                                                 href="orderNotificationDetails/{{ $notification->data['order_id'] }}/{{ $notification->id }}">
+                                                 <img src="{{ asset('Attachments/user/' . $notification->data['user_img']) }}"
+                                                     width="40" height="40" style="border-radius: 50%;">
+                                                 <div class=" mx-2">
+                                                     <h6 class="mb-0 name">{{ $notification->data['user_fname'] }}
+                                                         {{ $notification->data['user_lname'] }}</h6>
+                                                     <p class="time text-end mt-1 text-dark">{{ $notification->created_at }}
+                                                     </p>
+                                                 </div>
+                                                 <p class="mb-0 mx-1 content  text-dark">{{ $notification->data['title'] }}
                                                  </p>
-                                             </div>
-                                             <p class="mb-0 mx-1 content  text-dark">{{ $notification->data['title'] }}
-                                             </p>
-                                         </a>
-                                     </li>
-                                 @endforeach
+                                             </a>
+                                         </li>
+                                     @endforeach
+                                 @endauth
 
                              </ul>
+                             @auth
+
                              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill">
-                                 {{ auth()->user()->unreadNotifications->count() }}
+                                 {{ auth()->user()?->unreadNotifications?->count() }}
                              </span>
+                             @endauth
                          </li>
                      </ul>
 
 
                      <div class="d-flex align-items-center login-button mx-3">
-                         {{-- <a href="login.html" class="custom-link">تسجيل الدخول <i class="ms-1 gg-chevron-down "></i></a> --}}
+                        <div class="d-flex align-items-center login-button mx-5">
+                            <a href="{{ route('frontend.login') }}" class="custom-link">تسجيل الدخول <i
+                                    class="ms-1 gg-chevron-down "></i></a>
+                        </div>
                      </div>
                      <div id="subMenu">
                          <span class="hamLine"></span>
