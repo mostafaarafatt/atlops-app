@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('last_name')->nullable();
             $table->text('bio')->nullable();
+            $table->date('dob')->nullable();
             $table->string('username')->nullable();
             $table->enum('kind', ['client', 'provider'])->nullable();
             $table->string('type')->nullable();

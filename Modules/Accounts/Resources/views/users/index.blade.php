@@ -18,7 +18,7 @@
             @slot('title', trans('accounts::user.actions.list'))
 
             @slot('tools')
-                @include('accounts::users.partials.actions.trashed')
+                {{-- @include('accounts::users.partials.actions.trashed') --}}
                 @include('accounts::users.partials.actions.create')
             @endslot
 
@@ -27,7 +27,7 @@
                 <th>@lang('accounts::user.attributes.name')</th>
                 <th>@lang('accounts::user.attributes.email')</th>
                 <th>@lang('accounts::user.attributes.phone')</th>
-                <th>@lang('accounts::user.attributes.can_access')</th>
+                <th>@lang('accounts::user.attributes.verified')</th>
                 <th>@lang('accounts::user.attributes.created_at')</th>
                 <th>...</th>
             </tr>
@@ -43,11 +43,6 @@
                                     <div class="symbol-label"
                                          style="background-image:url({{ $user->getAvatar() }})"></div>
                                     <i class="symbol-badge symbol-badge-bottom bg-success"></i>
-                                    @if ($user->blocked_at)
-                                        @include('accounts::users.partials.flags.blocked')
-                                    @else
-                                        @include('accounts::users.partials.flags.svg')
-                                    @endif
                                 </div>
                                 <div class="ml-4">
                                     <div class="text-dark-75 mb-0">
@@ -59,7 +54,7 @@
                     </td>
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->phone }}</td>
-                    <td>@include('accounts::users.partials.flags.can_access')</td>
+                    <td>@include('accounts::users.partials.flags.verified')</td>
                     <td>{{ $user->created_at->format('Y-m-d') }}</td>
 
                     <td>
