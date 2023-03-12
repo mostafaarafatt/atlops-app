@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Modules\Accounts\Entities\User;
 use Modules\Categories\Entities\Category;
 use Modules\Categories\Entities\Service;
 use Modules\Categories\Entities\SubCategory;
@@ -29,6 +30,7 @@ class CreateOrdersTable extends Migration
             $table->enum('contact_type', ['phone', 'chat'])->nullable();
             $table->unsignedBigInteger('quantity');
             $table->tinyInteger('status');
+            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Category::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(SubCategory::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Service::class)->constrained()->cascadeOnDelete();

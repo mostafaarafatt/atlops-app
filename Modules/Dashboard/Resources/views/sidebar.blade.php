@@ -8,6 +8,8 @@
 @include('accounts::admins.sidebar')
 <!-- Roles -->
 @include('roles::_sidebar')
+<!-- Users -->
+@include('accounts::users.sidebar')
 <!-- orders -->
 @include('orders::orders.sidebar')
 <!-- categories -->

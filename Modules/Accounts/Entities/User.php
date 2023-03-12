@@ -64,6 +64,9 @@ class User extends Authenticatable implements HasMedia, HasLocalePreference
      */
     protected $fillable = [
         'name',
+        'last_name',
+        'bio',
+        'kind',
         'email',
         'phone',
         'password',

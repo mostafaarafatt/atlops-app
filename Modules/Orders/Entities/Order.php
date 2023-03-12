@@ -7,6 +7,7 @@ use App\Http\Filters\Filterable;
 use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Modules\Accounts\Entities\User;
 use Modules\Categories\Entities\Category;
 use Modules\Categories\Entities\Service;
 use Modules\Categories\Entities\SubCategory;
@@ -29,6 +30,7 @@ class Order extends Model implements HasMedia
         'contact_type',
         'quantity',
         'status',
+        'user_id',
         'category_id',
         'sub_category_id',
         'service_id',
@@ -75,6 +77,11 @@ class Order extends Model implements HasMedia
 
 
     // Relationships
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function category()
     {
