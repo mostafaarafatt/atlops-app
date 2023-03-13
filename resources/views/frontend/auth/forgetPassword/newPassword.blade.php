@@ -27,22 +27,34 @@
             <div class="row">
                 <div class="col-lg-7 col-md-4 empty"></div>
                 <div class="col-lg-5 col-md-8 form-cont ">
-                    <form action="{{ route('set-new-password',['id'=>$id]) }}" method="POST" class="bg-white p-5 login-form form-body">
-                      @csrf
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    <form action="{{ route('set-new-password', ['id' => $id]) }}" method="POST"
+                        class="bg-white p-5 login-form form-body">
+                        @csrf
                         <h5 class="modal-title w-100 fw-bold mb-2"> كلمة مرور جديدة</h5>
                         <p>الآن يمكنك تعيين كلمة مرور جديدة لك</p>
                         <div class="modal-body ">
                             <div class="mb-3 input-box">
                                 <label class="mb-3 fw-bold">كلمة المرور الجديدة</label>
-                                <input type="password" name="password" class="form-control id_password" id="password" required>
+                                <input type="password" name="password" class="form-control id_password" id="password"
+                                    required>
                                 <i class="eye-show fas fa-eye-slash togglePassword" id=""></i>
 
                             </div>
 
                             <div class="mb-3 input-box">
                                 <label class="mb-3 fw-bold"> تأكيد كلمة المرور الجديدة </label>
-                                <input type="password" name="password_confirmation" class="form-control password id_password"
-                                    id="confirm_password" placeholder="" required>
+                                <input type="password" name="password_confirmation"
+                                    class="form-control password id_password" id="confirm_password" placeholder=""
+                                    required>
                                 <i class="eye-show fas fa-eye-slash togglePassword" id=""></i>
                             </div>
                             <span id='message'></span>
@@ -51,7 +63,8 @@
 
                         </div>
                         <div class="text-center log m-auto mb-3 mt-4">
-                            <button type="submit" id="button" class="btn py-2"> <a  class="text-white"> تفعيل </a>
+                            <button type="submit" id="button" class="btn py-2"> <a class="text-white"> تفعيل
+                                </a>
                             </button>
                         </div>
 
@@ -79,10 +92,10 @@
         $('#password, #confirm_password').on('keyup', function() {
             if ($('#password').val() == $('#confirm_password').val()) {
                 $('#message').html('Matching').css('color', 'green');
-                
+
             } else
                 $('#message').html('Not Matching').css('color', 'red');
-                //$('#button').prop('disabled', true);
+            //$('#button').prop('disabled', true);
         });
     </script>
 
