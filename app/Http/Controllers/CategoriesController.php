@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Modules\Categories\Entities\Category;
 use Modules\Categories\Entities\Service;
 use Modules\Categories\Entities\SubCategory;
+use Modules\Countries\Entities\CityTranslation;
 use Modules\Countries\Entities\Country;
 
 class CategoriesController extends Controller
@@ -15,6 +16,7 @@ class CategoriesController extends Controller
     public function index()
     {
 
+        
         $categories = Category::all();
         return view('frontend.categories.categories', compact('categories'));
     }
@@ -35,8 +37,11 @@ class CategoriesController extends Controller
 
     public function gettowns($id)
     {
-        $towns = DB::table('towns')->where('country_id', $id)->pluck('town_name', 'id');
-        return json_encode($towns);
+        $country = Country::find($id);
+        
+        $cites=$country?->cities?->pluck("name" , "id")?->toArray();
+        
+        return json_encode($cites);
     }
 
 
