@@ -30,6 +30,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('blocked_at')->nullable();
             $table->boolean('can_access')->default(false);
             $table->string('facebook_id')->nullable();
+            $table->string('google_id')->nullable();
             $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();
