@@ -62,7 +62,7 @@ class UserController extends Controller
             'phone' => $data['phone'],
             'dob' => $data['date'],
             'kind' => $data['type'] == 0 ? 'client' : 'provider',
-            // 'communication' => $data['communication'],
+            'communication_type' => $data['communication'],
             'password' => Hash::make($data['password']),
             'bio' => $data['userDetails'],
         ]);

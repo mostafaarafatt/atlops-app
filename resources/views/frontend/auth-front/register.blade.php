@@ -234,13 +234,13 @@
                                 <span class="text-danger">{{ $errors->first('communication') }}</span>
                             @endif
                             <div class="col-md-6">
-                                <input type="radio" name="communication" value="عن طريق الهاتف"
+                                <input type="radio" name="communication" value="phone"
                                     class="me-3  form-check-input" id="info_gender">
                                 <label class=""> عن طريق الهاتف
                                 </label>
                             </div>
                             <div class="col-md-8">
-                                <input type="radio" name="communication" value="بواسطة الرسائل النصية"
+                                <input type="radio" name="communication" value="chat"
                                     class="me-3  form-check-input" id="info_gender">
                                 <label class="">بواسطة الرسائل النصية
                                 </label>

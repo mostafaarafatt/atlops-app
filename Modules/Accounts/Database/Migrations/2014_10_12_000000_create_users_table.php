@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->date('dob')->nullable();
             $table->string('username')->nullable();
             $table->enum('kind', ['client', 'provider'])->nullable();
+            $table->enum('communication_type', ['phone', 'chat'])->nullable();
             $table->string('type')->nullable();
             $table->string('email')->unique()->nullable();
             $table->string('phone')->unique()->nullable();
