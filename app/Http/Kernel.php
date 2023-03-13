@@ -75,6 +75,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'api.locales' => \App\Http\Middleware\ApiLocalesMiddleware::class,
         'frontend.auth' => \App\Http\Middleware\AuthenticateFrontEnd::class,
+        'frontend.guest' => \App\Http\Middleware\RedirectToFrontendIfAuth::class,
     ];
 
     /**

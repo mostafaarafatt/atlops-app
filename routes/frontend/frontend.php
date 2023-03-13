@@ -2,8 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
-
-include __DIR__ . '/auth.php';
+Route::middleware('frontend.guest')->group(function () {
+    include __DIR__ . '/auth.php';
+});
 include __DIR__ . '/general.php';
 
 Route::middleware('frontend.auth')->group(function () {
