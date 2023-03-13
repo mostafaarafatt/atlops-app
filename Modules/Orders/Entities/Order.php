@@ -4,6 +4,8 @@ namespace Modules\Orders\Entities;
 
 use AhmedAliraqi\LaravelMediaUploader\Entities\Concerns\HasUploader;
 use App\Http\Filters\Filterable;
+use App\Models\Favorites;
+use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\Accounts\Entities\User;
@@ -105,5 +107,15 @@ class Order extends Model implements HasMedia
     public function city()
     {
         return $this->belongsTo(City::class);
+    }
+
+    public function favUsers()
+    {
+        return $this->belongsToMany(Favorites::class, 'favorites');
+    }
+
+    public function getfav($user_id, $order_id)
+    {
+        return Favorites::where(['user_id' => $user_id, 'order_id' => $order_id])->exists();
     }
 }
