@@ -5,10 +5,10 @@
                 <div class="col-lg-8">
                     <div class="publisher-info d-flex align-items-center justify-content-between bg-white p-3 mb-3">
                         <div class="name  d-flex align-items-center ">
-                            <img src="{{ $order->getUserInfo($order->user_id)->getFirstMediaUrl('user_image') }}"
-                                class="rounded-circle" width="100px" height="100">
-                            <h6 class=" mb-0 me-3">{{ $order->getUserInfo($order->user_id)->firstName }}
-                                {{ $order->getUserInfo($order->user_id)->lastName }}</h6>
+                            <img src="{{ $order->user->getFirstMediaUrl('user_image') }}" class="rounded-circle" width="100px"
+                                height="100">
+                            <h6 class=" mb-0 me-3">{{ $order->user?->name }}
+                                {{ $order->user?->lastName }}</h6>
                         </div>
                         <div class="address  d-flex align-items-center ">
                             <i class="fa-solid fa-location-dot fa-xl"></i>
@@ -27,41 +27,43 @@
                     </div>
                     <div class="order-info bg-white p-4 pb-5">
                         <div class="d-flex align-items-center ">
-                            <h5 class="ms-5">{{ $order->orderName }}</h5>
-                            <h5 class="me-5">الكمية: 9 سيارات</h5>
+                            <h5 class="ms-5">{{ $order->name }}</h5>
+                            {{-- <h5 class="me-5">الكمية: 9 سيارات</h5> --}}
                         </div>
 
-                        <p class="fw-bold"style="font-size:12px">{{ $order->orderDescription }} </p>
+                        <p class="fw-bold"style="font-size:12px">{{ $order->description }} </p>
                         <div id="carouselExampleIndicators" class="carousel slide order-slider" data-bs-ride="carousel">
                             <div class="carousel-indicators">
-                                @foreach ($order->photo_name as $photo)
+                                {{-- @forelse ($order->photo_name as $photo) --}}
                                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
                                         class="active" aria-current="true" aria-label="Slide 1"></button>
-                                @endforeach
+                                {{-- @empty
+                                @endforelse --}}
+
                             </div>
 
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <img src="{{ asset($order->photo_path . $order->photo_name[0]) }}"
+                                    <img src=""
                                         class="d-block w-100 " height="300" alt="...">
                                     <div class="carousel-caption d-flex align-items-center px-3 py-2">
                                         <p class="mb-0">السعر المتوقع:
-                                            <br> {{ $order->startPrice }} - {{ $order->endPrice }}
+                                            <br> {{ $order->expected_start_price }} - {{ $order->expected_end_price }}
                                         </p>
                                     </div>
                                 </div>
 
-                                @for ($i = 1; $i < count($order->photo_name); $i++)
+                                {{-- @for ($i = 1; $i < count($order->photo_name); $i++) --}}
                                     <div class="carousel-item">
-                                        <img src="{{ asset($order->photo_path . $order->photo_name[$i]) }}"
+                                        <img src=""
                                             class="d-block w-100 " height="300" alt="...">
                                         <div class="carousel-caption d-flex align-items-center px-3 py-2">
                                             <p class="mb-0">السعر المتوقع:
-                                                <br> {{ $order->startPrice }} - {{ $order->endPrice }}
+                                                <br> {{ $order->expected_start_price }} - {{ $order->expected_end_price }}
                                             </p>
                                         </div>
                                     </div>
-                                @endfor
+                                {{-- @endfor --}}
 
                             </div>
 
@@ -76,15 +78,15 @@
                             <h6 class="fw-bold">التفاصيل</h6>
                             <div class=" d-flex align-items-center justify-content-between">
                                 <div class="main  d-flex align-items-center ">
-                                    <p>القسم الرئيسي: {{ $order->getCateg($order->category_id) }}</p>
+                                    <p>القسم الرئيسي: {{ $order->category?->name }}</p>
                                 </div>
                                 <div class="second  d-flex align-items-center ">
-                                    <p>القسم الفرعي: {{ $order->subCategory }}</p>
+                                    <p>القسم الفرعي: {{ $order->sub_category?->name }}</p>
                                 </div>
                             </div>
 
                             <div class="additional  d-flex align-items-center ">
-                                <p>الخدمة الإضافية: {{ $order->additionalService }}</p>
+                                <p>الخدمة الإضافية: {{ $order?->service?->name }}</p>
 
                             </div>
                         </div>
@@ -101,7 +103,7 @@
                                                     width="50" height="50" style="border-radius: 50%;">
                                             </a>
                                             <div class="me-2 w-100 ">
-                                                <h6>{{ $comment->getUserInfo($comment->user_id)->firstName }}</h6>
+                                                <h6>{{ $comment->getUserInfo($comment->user_id)->name }}</h6>
 
                                                 <div class=" d-flex align-items-center justify-content-between ">
                                                     <p>{{ $comment->comment }}</p>
@@ -110,30 +112,6 @@
                                                     </p>
                                                 </div>
 
-                                                {{-- <div id="content_reply-{{ $comment->id }}">
-                                                    @foreach ($comment->getChildComment($comment->id) as $item)
-                                                        <div class="mt-3 d-flex  w-100">
-                                                            <a href="">
-                                                                <img src="{{ asset('Attachments/user/' . $item->getUserInfo($item->user_id)->photo) }}"
-                                                                    width="50" height="50"
-                                                                    style="border-radius: 50%;">
-                                                            </a>
-                                                            <div class="me-2 w-100 ">
-                                                                <h6>{{ $item->getUserInfo($item->user_id)->firstName }}
-                                                                </h6>
-
-                                                                <div
-                                                                    class=" d-flex align-items-center justify-content-between ">
-                                                                    <p>{{ $item->comment }}</p>
-                                                                    <p class="date">
-                                                                        تم النشر في {{ $item->created_at }}
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    @endforeach
-
-                                                </div> --}}
 
                                                 {{-- الجزء الخاص بالرد ع الكومنتات --}}
                                                 <div id="content_reply-{{ $comment->id }}">
@@ -284,7 +262,7 @@
                                 <i class="fa-solid fa-phone-volume mx-2"></i>
 
                                 <input class="form-check-label mx-2" id="myMobile" style="direction: ltr;" readonly
-                                    for="mobile" value="{{ $order->getUserInfo($order->user_id)->phone }}">
+                                    for="mobile" value="{{ $order->phone }}">
 
                             </div>
                             <div class="copy">

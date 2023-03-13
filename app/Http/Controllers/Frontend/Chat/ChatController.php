@@ -39,7 +39,7 @@ class ChatController extends Controller
     public function show($id)
     {
         $conversation = Conversation::with(['messages', 'receiver'])->findOrFail($id);
-        $chatHtml = view('chats._chat_body', compact('conversation'))->render();
+        $chatHtml = view('frontend.chats._chat_body', compact('conversation'))->render();
         return response()->json([
             'chatHtml' => $chatHtml,
         ], 200);
@@ -64,7 +64,7 @@ class ChatController extends Controller
         ]);
         event(new MessageSent(auth()->user(), $message, $conversation, $conversation->receiver));
         $image = $message->image;
-        $messageHtml = view('chats.message', compact('content', 'image'))->render();
+        $messageHtml = view('frontend.chats.message', compact('content', 'image'))->render();
         return response()->json([
             'messageHtml' => $messageHtml,
         ], 200);

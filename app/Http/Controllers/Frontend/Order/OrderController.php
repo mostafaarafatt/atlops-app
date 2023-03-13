@@ -26,7 +26,7 @@ class OrderController extends Controller
 {
     public function createOrder(CreateOrderValidation $request)
     {
-        
+
         $country = Country::where('id', $request->Section)->first();
         $city = City::where('id', $request->product)->first();
 
@@ -94,7 +94,7 @@ class OrderController extends Controller
         $order = Order::where('id', $id)->first();
         $comments = Comment::where(['order_id' => $id, 'parent_id' => null])->get();
 
-        return view('order.orderDetails', compact('order', 'comments'));
+        return view('frontend.orders.orderDetails', compact('order', 'comments'));
     }
 
     public function orderComment(Request $request)
@@ -168,7 +168,7 @@ class OrderController extends Controller
         $order = Order::where('id', $id)->first();
         $comments = Comment::where(['order_id' => $id, 'parent_id' => null])->get();
 
-        return view('order.orderDetails', compact('order', 'comments'));
+        return view('frontend.orders.orderDetails', compact('order', 'comments'));
     }
 
 
