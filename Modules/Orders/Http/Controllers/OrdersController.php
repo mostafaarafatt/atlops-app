@@ -48,7 +48,7 @@ class OrdersController extends Controller
     {
         $orders = $this->repository->all();
         $categories = Category::pluck('name', 'id')->toArray();
-        // $countries = Country::pluck('name', 'id')->toArray();
+        $countries = Country::listsTranslations('name')->pluck('name', 'id')->toArray();;
         return view('orders::orders.index', get_defined_vars());
     }
 

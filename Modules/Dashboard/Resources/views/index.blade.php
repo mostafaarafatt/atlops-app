@@ -1,4 +1,4 @@
-{{-- Extends layout --}}
+Extends layout
 @extends('dashboard::layouts.default')
 
 @section('title')
@@ -32,7 +32,7 @@
                     </div>
                 </div>
 
-                {{-- @include("dashboard::layouts.apps.statestics") --}}
+                @include("dashboard::layouts.apps.statestics")
 
 
                 <!-- Visitors Map -->

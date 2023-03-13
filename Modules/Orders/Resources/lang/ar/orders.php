@@ -36,6 +36,7 @@ return [
         'contact_type' => 'طريقة التواصل',
         'quantity' => 'الكمية',
         'status' => 'الحالة',
+        'user_id' => 'المستخدم',
         'category_id' => 'القسم',
         'sub_category_id' => 'القسم الفرعي',
         'service_id' => 'الخدمة الاضافية',
