@@ -25,6 +25,11 @@
                             {{ session()->get('success') }}
                         </div>
                     @endif
+                    @if (session()->has('error_facebook'))
+                        <div class="alert alert-danger">
+                            {{ session()->get('error_facebook') }}
+                        </div>
+                    @endif
                     <form method="POST" action="{{ route('login.custom') }}" class="bg-white p-5 login-form form-body">
                         @csrf
                         <h5 class="modal-title w-100 fw-bold mb-4">تسجيل الدخول</h5>
@@ -69,7 +74,7 @@
                                 <p class="mx-2 mb-0 fw-bold">تسجيل الدخول بواسطة جوجل</p>
                             </div>
                         </a>
-                        <a href="{{ url('auth/facebook') }}" target="_blank">
+                        <a href="{{ route('auth.facebook') }}" target="_blank">
                             <div class="d-flex login-facebook m-auto mb-3  align-items-center justify-content-center">
                                 <i class="fa-brands fa-facebook"></i>
                                 <p class="mx-2 mb-0 fw-bold">تسجيل الدخول بواسطة فيسبوك</p>
