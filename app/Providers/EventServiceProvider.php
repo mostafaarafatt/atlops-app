@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Events\OtpSent;
+use App\Listeners\OtpSentListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -29,6 +31,9 @@ class EventServiceProvider extends ServiceProvider
         ResetPasswordCreated::class => [
             SendResetPasswordCode::class,
         ],
+        OtpSent::class => [
+            OtpSentListener::class
+        ]
     ];
 
     /**
