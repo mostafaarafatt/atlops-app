@@ -38,7 +38,7 @@ class CategoriesController extends Controller
     {
         $country = Country::find($id);
         
-        $cites=$country->cities->pluck("name" , "id")->toArray();
+        $cites=$country?->cities?->pluck("name" , "id")?->toArray();
         
         return json_encode($cites);
     }
