@@ -4,18 +4,21 @@ namespace App\Http\Controllers\Frontend\Order;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateOrderValidation;
-use App\Models\Categories;
-use App\Models\Category;
+
 use App\Models\Comment;
-use App\Models\Country;
+
 use App\Models\Favorites;
-use App\Models\Order;
-use App\Models\Servicescategory;
-use App\Models\Subcategory;
-use App\Models\Town;
-use Modules\Accounts\Entities\User;
+
+
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Modules\Categories\Entities\Category;
+use Modules\Categories\Entities\Service;
+use Modules\Categories\Entities\SubCategory;
+use Modules\Countries\Entities\City;
+use Modules\Countries\Entities\Country;
+use Modules\Orders\Entities\Order;
 
 use function PHPUnit\Framework\returnSelf;
 
@@ -23,46 +26,47 @@ class OrderController extends Controller
 {
     public function createOrder(CreateOrderValidation $request)
     {
-        $mytime = Carbon::now()->toDateString();
+        // $mytime = Carbon::now()->toDateString();
 
-        $imgData = [];
-        if ($request->hasFile('photo')) {
-            foreach ($request->file('photo') as $file) {
-                $name = $file->getClientOriginalName();
-                $path = $file->move(public_path('Attachments/' . 'ordersImage'), $name);
-                $imgData[] = $name;
+        // $imgData = [];
+        // if ($request->hasFile('photo')) {
+        //     foreach ($request->file('photo') as $file) {
+        //         $name = $file->getClientOriginalName();
+        //         $path = $file->move(public_path('Attachments/' . 'ordersImage'), $name);
+        //         $imgData[] = $name;
+        //     }
+        // }
+
+        // return $request;
+
+    
+        $country = Country::where('id', $request->Section)->first();
+        $city = City::where('id', $request->product)->first();
+
+        $order = Order::create([
+            'name' => $request->orderName,
+            'description' => $request->orderDescription,
+            'expected_start_price' => $request->startPrice,
+            'expected_end_price' => $request->endPrice,
+            'phone' => $request->phone,
+            'contact_type' => $request->contact,
+            'type' => auth()->user()->kind == "cliect" ? ,
+            'user_id' => auth()->user()->id,
+            'category_id' => $request->categoryId,
+            'sub_category_id' => $request->subCategory,
+            'service_id' => $request->additionalService,
+            'country_id' => $country->id,
+            'city_id' => $city->id,
+
+        ]);
+
+        if ($images = $request->file('photo')) {
+            foreach ($images as $image) {
+                $order->addMedia($image)->toMediaCollection('order_images');
             }
         }
 
-        $country = Country::where('id', $request->Section)->first();
-        $town = Town::where('id', $request->product)->first();
-
-        Order::create([
-            'orderName' => $request->orderName,
-            'category_id' => $request->categoryId,
-            'user_id' => auth()->user()->id,
-            'subCategory' => $request->subCategory,
-            'additionalService' => $request->additionalService,
-            'photo_name' => $imgData,
-            'photo_path' => "Attachments/ordersImage/",
-            'orderDescription' => $request->orderDescription,
-            'startPrice' => $request->startPrice,
-            'endPrice' => $request->endPrice,
-            'country' => $request->Section,
-            'country_name' => $country->country_name,
-            'town' => $request->product,
-            'town_name' => $town->town_name,
-            'phone' => $request->phone,
-            'contact' => $request->contact,
-            'date' => $mytime,
-            'order_type' => auth()->user()->type,
-        ]);
-
-
-
-
-
-        if (auth()->user()->type == "0") {
+        if (auth()->user()->kind == "client") {
             return redirect()->route('peopleOrders');
         } else {
             return redirect()->route('companyOrders');
@@ -72,8 +76,8 @@ class OrderController extends Controller
     public function peopleOrders()
     {
         $categoris = Category::all();
-        $subcategoris = Subcategory::all();
-        $services = Servicescategory::all();
+        $subcategoris = SubCategory::all();
+        $services = Service::all();
         $countries = Country::all();
         $user_orders = Order::where('order_type', "0")->where('ended_order', "0")->get();
         // $company_orders = Order::where('order_type',"0")->get();
@@ -86,7 +90,7 @@ class OrderController extends Controller
     {
         $categoris = Category::all();
         $subcategoris = Subcategory::all();
-        $services = Servicescategory::all();
+        $services = Service::all();
         $countries = Country::all();
         $company_orders = Order::where('order_type', "1")->where('ended_order', "0")->get();
 
@@ -112,7 +116,7 @@ class OrderController extends Controller
 
     public function allOrders()
     {
-    
+
 
         $user_orders = Order::where('order_type', "0")->where('user_id', auth()->user()->id)->where('ended_order', "0")->get();
         //return $user_orders;

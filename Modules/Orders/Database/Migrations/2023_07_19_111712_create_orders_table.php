@@ -28,12 +28,12 @@ class CreateOrdersTable extends Migration
             $table->double('phone')->nullable();
             $table->enum('type', ['individual', 'company']);
             $table->enum('contact_type', ['phone', 'chat'])->nullable();
-            $table->unsignedBigInteger('quantity');
-            $table->tinyInteger('status');
+            $table->unsignedBigInteger('quantity')->nullable();
+            $table->tinyInteger('status')->default(0);
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Category::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(SubCategory::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(Service::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(SubCategory::class)->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Service::class)->nullable()->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Country::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(City::class)->constrained()->cascadeOnDelete();
             $table->timestamps();

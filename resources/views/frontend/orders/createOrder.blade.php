@@ -67,7 +67,7 @@
                                         <option selected disabled>اختار القسم الفرعى لطلب {{ $category->name }}
                                         </option>
                                         @foreach ($subCategory as $subCateg)
-                                            <option value="{{ $subCateg->name }}">
+                                            <option value="{{ $subCateg->id }}">
                                                 {{ $subCateg->name }}</option>
                                         @endforeach
                                     </select>
@@ -78,7 +78,7 @@
                                         <option selected disabled>اختار الخدمة الاضافية لطلب {{ $category->name }}
                                         </option>
                                         @foreach ($serviceCategory as $service)
-                                            <option value="{{ $service->name }}">{{ $service->name }}
+                                            <option value="{{ $service->id }}">{{ $service->name }}
                                             </option>
                                         @endforeach
                                     </select>
@@ -213,7 +213,7 @@
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content w-auto m-auto">
 
-                                    <a href="peopleOrders.html">
+                                    <a href="">
                                         <button type="submit">
                                             <div class="modal-body">
                                                 <h5>تم إنشاء منتجك بنجاح !</h5>
