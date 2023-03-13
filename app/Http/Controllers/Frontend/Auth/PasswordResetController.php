@@ -40,7 +40,7 @@ class PasswordResetController extends Controller
                 'expires_at' => now()->addSeconds(121),
             ]
         );
-        event(new OtpSent($user, $code));
+        event(new OtpSent($user, $code, $otp));
         if (session()->has('error_otp_mail')) {
             return redirect()->back()->withInput();
         }
@@ -55,8 +55,10 @@ class PasswordResetController extends Controller
         $user = User::findOrFail($id);
         $otp = $user->otps()->valid($user->email)->first();
         if ($otp?->code == $request?->code) {
+            session()->put('id', $id);
             session()->save();
-            return redirect()->route('reset-password')->with('id', $id);
+            $otp->delete();
+            return redirect()->route('reset-password');
         }
         return redirect()->back()->with('otp_error', 'otp expired or not valid, please try again');
     }
@@ -71,6 +73,6 @@ class PasswordResetController extends Controller
         $user = User::findOrFail($id);
         $user->update(['password' => Hash::make($password)]);
         session()->forget(['user', 'expires_at', 'id']);
-        return redirect()->route('login');
+        return redirect()->route('frontend.login')->with('success', 'تم تغيير كلمة المرور بنجاح ');
     }
 }

@@ -29,6 +29,7 @@ class OrderFilter extends BaseFilters
      */
     protected function name($value)
     {
+        // dd("name");
         if ($value) {
             return $this->builder->where('name', 'LIKE', "%$value%");
         }
@@ -44,6 +45,7 @@ class OrderFilter extends BaseFilters
      */
     protected function description($value)
     {
+        // dd("description");
         if ($value) {
             return $this->builder->where('description', 'LIKE', "%$value%");
         }
@@ -59,6 +61,7 @@ class OrderFilter extends BaseFilters
      */
     protected function phone($value)
     {
+        // dd("phone");
         if ($value) {
             return $this->builder->where('phone', $value);
         }
@@ -74,6 +77,7 @@ class OrderFilter extends BaseFilters
      */
     protected function type($value)
     {
+        // dd("type");
         if ($value) {
             return $this->builder->where('type', $value);
         }
@@ -89,6 +93,7 @@ class OrderFilter extends BaseFilters
      */
     protected function status($value)
     {
+        // dd("status");
         if ($value) {
             return $this->builder->where('status', $value);
         }
@@ -104,6 +109,7 @@ class OrderFilter extends BaseFilters
      */
     protected function category($value)
     {
+        // dd("category");
         if ($value) {
             return $this->builder->where('category_id', $value);
         }
@@ -119,6 +125,7 @@ class OrderFilter extends BaseFilters
      */
     protected function country($value)
     {
+        // dd("country");
         if ($value) {
             return $this->builder->where('country_id', $value);
         }

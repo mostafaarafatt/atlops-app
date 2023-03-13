@@ -20,6 +20,11 @@
             <div class="row">
                 <div class="col-lg-7 col-md-4 empty"></div>
                 <div class="col-lg-5 col-md-8 form-cont ">
+                    @if (session()->has('success'))
+                        <div class="alert alert-success">
+                            {{ session()->get('success') }}
+                        </div>
+                    @endif
                     <form method="POST" action="{{ route('login.custom') }}" class="bg-white p-5 login-form form-body">
                         @csrf
                         <h5 class="modal-title w-100 fw-bold mb-4">تسجيل الدخول</h5>

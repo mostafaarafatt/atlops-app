@@ -88,6 +88,12 @@ trait UserHelpers
         return $this->forceFill(['blocked_at' => null]);
     }
 
+
+    public function getFullNameAttribute()
+    {
+        return $this->name . " " . $this->last_name;
+    }
+
     /**
      * send verification sms to user
      * @param $phone

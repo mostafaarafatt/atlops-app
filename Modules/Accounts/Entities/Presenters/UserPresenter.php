@@ -15,4 +15,5 @@ class UserPresenter extends Presenter
     {
         return trans('accounts::users.types.'.$this->entity->type);
     }
+
 }
