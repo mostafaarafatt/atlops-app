@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('frontend.layouts.app')
 
 @section('content')
     <!-- start categories -->
@@ -12,12 +12,12 @@
                         <a href="{{ route('orderDetails', ['id' => $category->id]) }}">
                             <div class="card text-center px-3 py-4 category">
                                 <div class="category-img-con d-flex align-items-center justify-content-center m-auto">
-                                    <img src="images/{{ $category->category_image }}" class="" width="70px"
+                                    <img src="{{$category->getImage()}}" class="" width="70px"
                                         height="50px" alt="...">
 
                                 </div>
                                 <div class="card-body">
-                                    <h5 class="card-text fw-bold">{{ $category->category_name }}</h5>
+                                    <h5 class="card-text fw-bold">{{ $category->name }}</h5>
                                 </div>
                             </div>
                         </a>

@@ -4,6 +4,7 @@ namespace Modules\Accounts\Entities;
 
 use AhmedAliraqi\LaravelMediaUploader\Entities\Concerns\HasUploader;
 use App\Http\Filters\Filterable;
+use App\Models\Otp;
 use Illuminate\Contracts\Translation\HasLocalePreference;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -225,6 +226,10 @@ class User extends Authenticatable implements HasMedia, HasLocalePreference
     public function canBeImpersonated(): bool
     {
         return $this->can_access;
+    }
+    public function otps()
+    {
+        return $this->morphMany(Otp::class, 'user');
     }
 
 //    /** Start mutators  **/

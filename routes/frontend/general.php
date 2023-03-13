@@ -13,6 +13,6 @@ Route::get('/terms', [PagesController::class,'termsConditions'])->name('terms');
 
 Route::controller(CategoriesController::class)->group(function () {
     Route::get('categoriess', 'index')->name('categoriess');
-    Route::get('orderDetails/{id}', 'orderDetails')->name('orderDetails');
+    Route::get('orderDetails/{id}', 'orderDetails')->name('orderDetails')->middleware('frontend.auth');
     Route::get('country/{id}', 'gettowns');
 });

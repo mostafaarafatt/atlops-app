@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categories;
-use App\Models\Category;
-use App\Models\Country;
-use App\Models\Servicescategory;
-use App\Models\Subcategory;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Modules\Categories\Entities\Category;
+use Modules\Categories\Entities\Service;
+use Modules\Categories\Entities\SubCategory;
+use Modules\Countries\Entities\Country;
 
 class CategoriesController extends Controller
 {
@@ -16,21 +16,21 @@ class CategoriesController extends Controller
     {
 
         $categories = Category::all();
-        return view('categ.categories', compact('categories'));
+        return view('frontend.categories.categories', compact('categories'));
     }
 
     public function orderDetails($id)
     {
         $category = Category::find($id);
         //return $category;
-        $subCategory = Subcategory::where('category_id', $id)->get();
+        $subCategory = SubCategory::where('category_id', $id)->get();
         //return $category;
-        $serviceCategory = Servicescategory::where('category_id', $id)->get();
+        $serviceCategory = Service::where('category_id', $id)->get();
         //return $serviceCategory;
         $countries = Country::all();
         //return $country;
 
-        return view('order.createOrder', compact('category', 'subCategory', 'serviceCategory', 'countries'));
+        return view('frontend.orders.createOrder', compact('category', 'subCategory', 'serviceCategory', 'countries'));
     }
 
     public function gettowns($id)

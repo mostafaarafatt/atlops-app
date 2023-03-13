@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('frontend.layouts.app')
 
 @section('content')
     <section class="create-order">
@@ -8,7 +8,7 @@
                     <form class="bg-white p-5 mt-5 create-order-form" method="POST" action="{{ route('createOrder') }}"
                         enctype="multipart/form-data">
                         @csrf
-                        <h3 class="fw-bold">إنشاء طلب {{ $category->category_name }}</h3>
+                        <h3 class="fw-bold">إنشاء طلب {{ $category->name }}</h3>
                         <p>قم بمليء تفاصيل طلبك ليتمكن الآخرين من رؤية منتجك</p>
                         <div class="progress mt-3">
                             <div class="progress-bar " role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
@@ -55,7 +55,7 @@
                                 </div>
                                 <div class="col-md-6 mb-3 ">
                                     <label class="mb-3 fw-bold">القسم الرئيسي</label>
-                                    <input type="text" name="categoryName" value="{{ $category->category_name }}"
+                                    <input type="text" name="categoryName" value="{{ $category->name }}"
                                         class="form-control" id="" readonly>
                                     <input type="text" name="categoryId" value="{{ $category->id }}"
                                         class="form-control" id="" hidden>
@@ -64,28 +64,28 @@
                                 <div class="col-md-6 mb-3 ">
                                     <label class="mb-3 fw-bold"> القسم الفرعي</label>
                                     <select name="subCategory" class="form-select" aria-label="Default select example">
-                                        <option selected disabled>اختار القسم الفرعى لطلب {{ $category->category_name }}
+                                        <option selected disabled>اختار القسم الفرعى لطلب {{ $category->name }}
                                         </option>
                                         @foreach ($subCategory as $subCateg)
-                                            <option value="{{ $subCateg->subcategory_name }}">
-                                                {{ $subCateg->subcategory_name }}</option>
+                                            <option value="{{ $subCateg->name }}">
+                                                {{ $subCateg->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="col-md-12 mb-3 ">
                                     <select name="additionalService" class="form-select"
                                         aria-label="Default select example">
-                                        <option selected disabled>اختار الخدمة الاضافية لطلب {{ $category->category_name }}
+                                        <option selected disabled>اختار الخدمة الاضافية لطلب {{ $category->name }}
                                         </option>
                                         @foreach ($serviceCategory as $service)
-                                            <option value="{{ $service->service_name }}">{{ $service->service_name }}
+                                            <option value="{{ $service->name }}">{{ $service->name }}
                                             </option>
                                         @endforeach
                                     </select>
                                 </div>
 
                                 <div class="col-md-12 mb-3 ">
-                                    <label class="mb-3 fw-bold">وصف طلب {{ $category->category_name }}</label>
+                                    <label class="mb-3 fw-bold">وصف طلب {{ $category->name }}</label>
                                     <div class="form-floating">
                                         <textarea name="orderDescription" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
                                             style="height: 100px"></textarea>
@@ -124,7 +124,7 @@
                                         onchange="console.log('change is firing')" id="example-search">
                                         <option value="" selected>اختار المدينة</option>
                                         @foreach ($countries as $country)
-                                            <option value="{{ $country->id }}">{{ $country->country_name }}</option>
+                                            <option value="{{ $country->id }}">{{ $country->name }}</option>
                                         @endforeach
                                     </select>
                                     @if ($errors->has('country'))
@@ -150,7 +150,7 @@
                                         onchange="console.log('change is firing')" id="example-search">
                                         <option value="" selected disabled>حدد الدولة</option>
                                         @foreach ($countries as $country)
-                                            <option value="{{ $country->id }}">{{ $country->country_name }}</option>
+                                            <option value="{{ $country->id }}">{{ $country->name }}</option>
                                         @endforeach
                                     </select>
                                     @if ($errors->has('Section'))
@@ -171,7 +171,7 @@
 
                                 <div class="col-md-6 mb-3 ">
                                     <label class="mb-3 fw-bold"> رقم الجوال </label>
-                                    <input type="text" value="{{ auth()->user()->phone }}" name="phone"
+                                    <input type="text" value="{{ auth()?->user()?->phone }}" name="phone"
                                         class="form-control" id="" readonly>
                                 </div>
                                 <label class="mb-3 fw-bold">طريقة التواصل</label>
@@ -367,7 +367,7 @@
             search: true
         })
 
-        // upload order photos 
+        // upload order photos
         $(function() {
             $("#upload-photo").change(function() {
                 readURL(this);
