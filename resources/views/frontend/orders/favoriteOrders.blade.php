@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('frontend.layouts.app')
 
 @section('content')
     <section class="favorites my-5">
@@ -65,7 +65,7 @@
 
         </div>
     </section>
-@endsection 
+@endsection
 
 @section('scripts')
     {{-- script to add and remove order to wishlist --}}

@@ -153,7 +153,7 @@ class OrderController extends Controller
             array_push($orders, Order::where('id', $fav->order_id)->first());
         }
 
-        return view('order.favoriteOrders', compact('orders'));
+        return view('frontend.orders.favoriteOrders', compact('orders'));
     }
 
     public function orderNotificationDetails($id, $notification_id)
