@@ -109,16 +109,16 @@ class OrderController extends Controller
     {
 
 
-        $user_orders = Order::where('order_type', "0")->where('user_id', auth()->user()->id)->where('ended_order', "0")->get();
+        $user_orders = Order::where('type', "individual")->where('user_id', auth()->user()->id)->where('status', "0")->get();
         //return $user_orders;
 
-        $company_orders = Order::where('order_type', "1")->where('user_id', auth()->user()->id)->where('ended_order', "0")->get();
+        $company_orders = Order::where('type', "company")->where('user_id', auth()->user()->id)->where('status', "0")->get();
         //return $company_orders;
 
-        $ended_user_order = Order::where('order_type', "0")->where('user_id', auth()->user()->id)->where('ended_order', "1")->get();
+        $ended_user_order = Order::where('type', "individual")->where('user_id', auth()->user()->id)->where('status', "1")->get();
         //return $ended_user_order;
 
-        $ended_company_order = Order::where('order_type', "1")->where('user_id', auth()->user()->id)->where('ended_order', "1")->get();
+        $ended_company_order = Order::where('type', "company")->where('user_id', auth()->user()->id)->where('status', "1")->get();
         //return $ended_company_order;
 
         return view('frontend.orders.showAllOrders', compact('user_orders', 'company_orders', 'ended_user_order', 'ended_company_order'));
