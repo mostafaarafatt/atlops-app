@@ -28,6 +28,7 @@ class CreateOrdersTable extends Migration
             $table->double('phone')->nullable();
             $table->enum('type', ['individual', 'company']);
             $table->enum('contact_type', ['phone', 'chat'])->nullable();
+            $table->enum('loved_order',[0,1])->default(0);
             $table->unsignedBigInteger('quantity')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
