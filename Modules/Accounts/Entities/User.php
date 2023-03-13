@@ -232,7 +232,10 @@ class User extends Authenticatable implements HasMedia, HasLocalePreference
     {
         return $this->morphMany(Otp::class, 'user');
     }
-
+    public function getFullNameAttribute()
+    {
+        return $this->name . ' ' . $this->last_name;
+    }
 //    /** Start mutators  **/
 //    public function setCanAccessAttribute($value): void
 //    {

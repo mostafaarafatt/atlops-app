@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ChatRequest;
 use App\Http\Requests\SendMessageRequest;
 use App\Models\Conversation;
-use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
 class ChatController extends Controller
@@ -15,7 +14,7 @@ class ChatController extends Controller
     public function index()
     {
         $allChats = Conversation::where('sender_id', auth()->user()->id)->orWhere('receiver_id', auth()->user()->id)->get();
-        return view('chats.index', compact('allChats'));
+        return view('frontend.chats.index', compact('allChats'));
     }
     public function getChat(ChatRequest $request)
     {

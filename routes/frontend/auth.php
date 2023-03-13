@@ -22,5 +22,5 @@ Route::get('reset-password', [PasswordResetController::class, 'resetPassword'])-
 Route::post('reset-password/{id}', [PasswordResetController::class, 'setNewPassword'])->name('set-new-password');
 Route::controller(FacebookController::class)->group(function(){
     Route::get('auth/facebook', 'redirectToFacebook')->name('auth.facebook');
-    Route::get('auth/facebook/callback', 'handleFacebookCallback');
+    Route::get('auth/facebook/callback', 'handleFacebookCallback')->name('auth.facebook.callback');
 });
