@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use Modules\Accounts\Database\Seeders\UsersTableSeeder;
 use Modules\Categories\Database\Seeders\CategoriesDatabaseSeeder;
 use Modules\Countries\Database\Seeders\CountriesTableSeeder;
+use Modules\Orders\Database\Seeders\OrdersTableSeeder;
 use Modules\Settings\Database\Seeders\SettingsDatabaseSeeder;
 
 class DummyDataSeeder extends Seeder
@@ -22,5 +23,6 @@ class DummyDataSeeder extends Seeder
         $this->call(SettingsDatabaseSeeder::class);
         $this->call(CountriesTableSeeder::class);
         $this->call(CategoriesDatabaseSeeder::class);
+        $this->call(OrdersTableSeeder::class);
     }
 }

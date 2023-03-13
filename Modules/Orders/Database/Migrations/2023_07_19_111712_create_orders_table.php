@@ -32,8 +32,8 @@ class CreateOrdersTable extends Migration
             $table->tinyInteger('status');
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Category::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(SubCategory::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(Service::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(SubCategory::class)->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Service::class)->nullable()->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Country::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(City::class)->constrained()->cascadeOnDelete();
             $table->timestamps();

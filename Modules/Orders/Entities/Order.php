@@ -4,7 +4,6 @@ namespace Modules\Orders\Entities;
 
 use AhmedAliraqi\LaravelMediaUploader\Entities\Concerns\HasUploader;
 use App\Http\Filters\Filterable;
-use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\Accounts\Entities\User;
@@ -60,7 +59,7 @@ class Order extends Model implements HasMedia
     {
         $this
             ->addMediaCollection('orders')
-            ->useFallbackUrl('https://www.orderimages.io/' . $this->code . '/shiny/64.png');
+            ->useFallbackUrl('http://62.171.160.229/web/image?model=res.users&id=87&field=image_64');
     }
 
 
