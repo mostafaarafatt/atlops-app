@@ -19,7 +19,7 @@
                                 <div class=navLabel>رسائلي</div>
                             </a></div>
                         <div class=navLink><a href="{{ route('profile') }}">
-                                <img src='{{ auth()->user()?->avatar }}' width="40px"
+                                <img src='{{ auth()->user()?->avatar ??  asset('/images/user.png') }}' width="40px"
                                     height="40">
                                 <div class=navLabel>حسابي</div>
                             </a></div>

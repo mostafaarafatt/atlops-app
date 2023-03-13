@@ -80,21 +80,22 @@
                                  <div class="my-4"><a href="{{ route('favorites') }}" class="custom-link"> <i><i
                                                  class="fa-solid fa-heart ms-2 fa-xl"></i></i><span>المفضلة</span></a>
                                  </div>
-                                 <div class="my-4"><a href="blogs.html" class="custom-link"><i
+                                 <div class="my-4"><a href="{{ route('blogs') }}" class="custom-link"><i
                                              class="fa-solid fa-pen-to-square ms-2 fa-xl"></i>المدونة </a></div>
-                                 <div class="my-4"><a href="bankAccount.html" class="custom-link"> <i
-                                             class="fa-solid fa-money-bill-trend-up ms-2 fa-xl "></i>الحساب البنكى</a>
-                                 </div>
-                                 <div class="my-4"><a href="conditions.html" class="custom-link"><i
+
+                                 <div class="my-4"><a href="{{route('terms')}}" class="custom-link"><i
                                              class="fa-solid fa-file-lines ms-2 fa-xl"></i>
                                          الشروط والاحكام</a></div>
 
-                                 <div class="my-4"><a href="aboutUs.html" class="custom-link"><i
+                                 <div class="my-4"><a href="{{route('about-us')}}" class="custom-link"><i
                                              class="fa-solid fa-users ms-2 fa-xl"></i>من نحن
                                      </a></div>
-                                 <div class="my-4"><a href="{{ route('signout') }}" class="custom-link"><i
-                                             class="fa-solid fa-right-from-bracket ms-2 fa-xl"></i>تسجيل الخروج </a>
-                                 </div>
+                                 @auth
+
+                                     <div class="my-4"><a href="{{ route('signout') }}" class="custom-link"><i
+                                                 class="fa-solid fa-right-from-bracket ms-2 fa-xl"></i>تسجيل الخروج </a>
+                                     </div>
+                                 @endauth
                                  <div class="side-navbar-content">
                                      <div class="my-4">
                                          <ul class='side-nav-notifications navbar-nav-icons'>
@@ -120,8 +121,7 @@
                                                      </li>
                                                      <li class="">
                                                          <a class="d-flex p-2  w-100" href="#">
-                                                             <img src="images/user2.png" width="40"
-                                                                 height="40">
+                                                             <img src="images/user2.png" width="40" height="40">
                                                              <div class=" mx-2">
                                                                  <h6 class="mb-0 name">أحمد محمد</h6>
                                                                  <p class="time text-end mt-1 text-dark">منذ 3 دقائق

@@ -61,7 +61,7 @@ class UserController extends Controller
             'email' => $data['email'],
             'phone' => $data['phone'],
             'dob' => $data['date'],
-            'kind' => $data['type'],
+            'kind' => $data['type'] == 0 ? 'client' : 'provider',
             // 'communication' => $data['communication'],
             'password' => Hash::make($data['password']),
             'bio' => $data['userDetails'],

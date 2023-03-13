@@ -23,18 +23,6 @@ class OrderController extends Controller
 {
     public function createOrder(CreateOrderValidation $request)
     {
-
-        // // Section = country , product = town
-        // $validate = $request->validate([
-        //     'photo' => 'required',
-        //     'orderName' => 'required',
-        //     'orderDescription' => 'required',
-        //     'startPrice' => 'required',
-        //     'endPrice' => 'required',
-        //     'Section' => 'required',
-        //     'product' => 'required',
-        // ]);
-
         $mytime = Carbon::now()->toDateString();
 
         $imgData = [];
@@ -124,6 +112,7 @@ class OrderController extends Controller
 
     public function allOrders()
     {
+    
 
         $user_orders = Order::where('order_type', "0")->where('user_id', auth()->user()->id)->where('ended_order', "0")->get();
         //return $user_orders;
@@ -137,7 +126,7 @@ class OrderController extends Controller
         $ended_company_order = Order::where('order_type', "1")->where('user_id', auth()->user()->id)->where('ended_order', "1")->get();
         //return $ended_company_order;
 
-        return view('order.showAllOrders', compact('user_orders', 'company_orders', 'ended_user_order', 'ended_company_order'));
+        return view('frontend.orders.showAllOrders', compact('user_orders', 'company_orders', 'ended_user_order', 'ended_company_order'));
     }
 
     public function endOrder($id)

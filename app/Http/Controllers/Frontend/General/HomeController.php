@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend\General;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Modules\Sliders\Entities\Slider;
 
 class HomeController extends Controller
 {
@@ -14,6 +15,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('frontend.general.home');
+        $sliders = Slider::query()->get();
+        return view('frontend.general.home',compact('sliders'));
     }
 }
