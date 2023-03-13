@@ -394,7 +394,7 @@
                                         <div class="card-body">
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <a href="${route}">
-                                                    <h5 id="orderName" class="card-title"> ${element.ame} </h5>
+                                                    <h5 id="orderName" class="card-title"> ${element.orderName} </h5>
                                                 </a>
                                                 <button>
                                                     <i class="fa-solid fa-heart fa-2xl"></i>

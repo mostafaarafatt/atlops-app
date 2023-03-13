@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('frontend.layouts.app')
 
 @section('content')
     <section class="profile w-100 " style="height: 100vh;">
@@ -43,7 +43,7 @@
                         </div>
                         <div class="desc">
                             <h6>نبذة عن المستخدم</h6>
-                            <p>{{ $user->userDetails }}</p>
+                            <p>{{ $user->bio }}</p>
                         </div>
                     </div>
                 </div>
