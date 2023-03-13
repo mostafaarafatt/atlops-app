@@ -9,7 +9,7 @@
                         <div class="user-info d-flex align-items-center justify-content-between  mb-3">
                             <div class="name  d-flex align-items-center ">
                                 {{-- <img src="Attachments/user/{{ $user->photo }}" class="rounded-circle" width="120px" height="120"> --}}
-                                <img src='{{ auth()->user()?->getFirstMediaUrl('user_image') }}' class="rounded-circle" width="120px"
+                                <img src='{{ auth()->user()?->avatars }}' class="rounded-circle" width="120px"
                                 height="120">
                                 <h6 class=" mb-0 me-3">{{ $user->firstName }} {{ $user->lastName }}</h6>
                             </div>
@@ -37,7 +37,7 @@
                             </div>
                             <div class="">
                                 <h6 class="mb-2">طريقة التواصل</h6>
-                                <h6 class="data">{{ $user->communication }}</h6>
+                                <h6 class="data">{{ $user->communication_type == 'phone' ? 'عن طريق الهاتف' : 'بواسطه الرسائل النصيه' }}</h6>
 
                             </div>
                         </div>
