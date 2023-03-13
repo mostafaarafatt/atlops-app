@@ -14,7 +14,7 @@ class ProfileController extends Controller
     {
         $id = Auth::id();
         $user = User::where('id', $id)->first();
-        return view('profile', compact('user'));
+        return view('frontend.profile', compact('user'));
     }
 
     public function profileUpdate($id)
@@ -22,7 +22,7 @@ class ProfileController extends Controller
         //dd($id);
         $user = User::where('id', $id)->first();
         //return $user;
-        return view('updateProfile', compact('user'));
+        return view('frontend.updateProfile', compact('user'));
     }
 
     public function saveEditProfile(Request $request)
@@ -60,12 +60,12 @@ class ProfileController extends Controller
             }
         }
 
-        return redirect('home');
+        return redirect()->route('home');
     }
 
     public function changePassword()
     {
-        return view('changePassword');
+        return view('frontend.changePassword');
     }
 
     public function changePasswordDone(Request $request)
@@ -83,7 +83,7 @@ class ProfileController extends Controller
             ]);
             return redirect('home');
         } else {
-            return redirect('changePassword');
+            return redirect('frontend.changePassword');
         }
     }
 }

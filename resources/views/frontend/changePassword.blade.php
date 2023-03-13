@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('frontend.layouts.app')
 
 @section('content')
     <section class=" w-100 change-password" style="height: 100vh;">

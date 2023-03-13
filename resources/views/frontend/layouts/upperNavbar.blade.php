@@ -50,17 +50,15 @@
                          </li>
                      </ul>
                      @auth
-
                          <div class="d-flex align-items-center login-button mx-3">
                              <div class="d-flex align-items-center login-button mx-5">
-                                 <a href="#" class="custom-link"> {{ auth()?->user()?->name }} <i
+                                 <a href="{{ route('profile') }}" class="custom-link"> {{ auth()?->user()?->name }} <i
                                          class="ms-1 gg-chevron-down "></i></a>
                              </div>
                          </div>
                      @endauth
 
                      @guest
-
                          <div class="d-flex align-items-center login-button mx-3">
                              <div class="d-flex align-items-center login-button mx-5">
                                  <a href="{{ route('frontend.login') }}" class="custom-link">تسجيل الدخول <i
@@ -83,11 +81,11 @@
                                  <div class="my-4"><a href="{{ route('blogs') }}" class="custom-link"><i
                                              class="fa-solid fa-pen-to-square ms-2 fa-xl"></i>المدونة </a></div>
 
-                                 <div class="my-4"><a href="{{route('terms')}}" class="custom-link"><i
+                                 <div class="my-4"><a href="{{ route('terms') }}" class="custom-link"><i
                                              class="fa-solid fa-file-lines ms-2 fa-xl"></i>
                                          الشروط والاحكام</a></div>
 
-                                 <div class="my-4"><a href="{{route('about-us')}}" class="custom-link"><i
+                                 <div class="my-4"><a href="{{ route('about-us') }}" class="custom-link"><i
                                              class="fa-solid fa-users ms-2 fa-xl"></i>من نحن
                                      </a></div>
                                  @auth

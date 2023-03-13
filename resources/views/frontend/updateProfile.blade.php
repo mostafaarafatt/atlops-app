@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('frontend.layouts.app')
 
 @section('content')
     <section class="confirm-register edit-profile w-100 " style="height: 100vh;">
@@ -26,12 +26,12 @@
                         <div class="row">
                             <div class="col-lg-6 mb-3 ">
                                 <label class="mb-3 fw-bold"> اسم المستخدم الأول</label>
-                                <input type="text" value="{{ $user->firstName }}" name="firstName" class="form-control"
+                                <input type="text" value="{{ $user->name }}" name="firstName" class="form-control"
                                     id="">
                             </div>
                             <div class="col-lg-6 mb-3 ">
                                 <label class="mb-3 fw-bold">اسم المستخدم الثاني</label>
-                                <input type="text" value="{{ $user->lastName }}" name="lastName" class="form-control"
+                                <input type="text" value="{{ $user->last_name }}" name="lastName" class="form-control"
                                     id="">
                             </div>
                             <div class="col-md-12 mb-3">
@@ -48,7 +48,7 @@
                             <div class="col-md-12 mb-3 input-box">
                                 <label class="mb-3 fw-bold"> نبذة عن المستخدم </label>
                                 <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea">{{ $user->userDetails }}</textarea>
+                                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea">{{ $user->bio }}</textarea>
                                 </div>
                             </div>
 
