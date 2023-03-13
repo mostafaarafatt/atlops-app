@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Models\Otp;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
@@ -17,6 +18,7 @@ class OtpSent
     public function __construct(
         public Authenticatable $user,
         public string $code,
+        public Otp $otp
 
     ) {
     }

@@ -36,6 +36,7 @@ return [
         'contact_type' => 'Contact Type',
         'quantity' => 'Quantity',
         'status' => 'Status',
+        'user_id' => 'User',
         'category_id' => 'Category',
         'sub_category_id' => 'Sub Category',
         'service_id' => 'Service',

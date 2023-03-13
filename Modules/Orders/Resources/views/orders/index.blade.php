@@ -18,7 +18,9 @@
                 <tr>
                     <th>@lang('orders::orders.attributes.image')</th>
                     <th>@lang('orders::orders.attributes.name')</th>
+                    <th>@lang('orders::orders.attributes.type')</th>
                     <th>@lang('orders::orders.attributes.category_id')</th>
+                    <th>@lang('orders::orders.attributes.status')</th>
                     <th style="width: 160px">...</th>
                 </tr>
             </thead>
@@ -36,12 +38,15 @@
                             {{ $order->type }}
                         </td>
                         <td class="d-none d-md-table-cell">
-                            {{ $order->category()->name }}
+                            {{ $order->category->name }}
+                        </td>
+                        <td class="d-none d-md-table-cell">
+                            @include('orders::orders.partials.flags.status')
                         </td>
 
                         <td style="width: 160px">
                             @include('orders::orders.partials.actions.show')
-                            @include('orders::orders.partials.actions.edit')
+                            {{-- @include('orders::orders.partials.actions.edit') --}}
                             @include('orders::orders.partials.actions.delete')
                         </td>
                     </tr>
