@@ -26,16 +26,10 @@ class UserController extends Controller
 
     public function customLogin(LoginValidation $request)
     {
-        // $request->validate([
-        //     'email' => 'required|exists:users',
-        //     'password' => 'required',
-        // ]);
 
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            //dd(true);
-            return redirect()->intended('home')
-                ->withSuccess('Signed in');
+            return redirect()->to(route('home'));
         }
 
         return redirect("login")->withSuccess('Login details are not valid');
@@ -88,6 +82,6 @@ class UserController extends Controller
     public function signOut()
     {
         Auth::logout();
-        return Redirect('login');
+        return redirect()->to(route('frontend.login'));
     }
 }

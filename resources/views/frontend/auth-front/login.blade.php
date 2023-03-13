@@ -77,7 +77,11 @@
                         <p class="text-center text-secondary">هل أنت ادمن؟
                             <a href="{{route('login')}}" class="fw-bold">تسجيل الدخول</a>
                         </p>
+                        <p class="text-center text-secondary">
+                            <a href="{{route('home')}}" class="fw-bold"> تخطي</a>
+                        </p>
                     </form>
+
                 </div>
             </div>
 
