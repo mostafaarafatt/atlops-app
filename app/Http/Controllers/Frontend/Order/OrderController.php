@@ -26,20 +26,7 @@ class OrderController extends Controller
 {
     public function createOrder(CreateOrderValidation $request)
     {
-        // $mytime = Carbon::now()->toDateString();
-
-        // $imgData = [];
-        // if ($request->hasFile('photo')) {
-        //     foreach ($request->file('photo') as $file) {
-        //         $name = $file->getClientOriginalName();
-        //         $path = $file->move(public_path('Attachments/' . 'ordersImage'), $name);
-        //         $imgData[] = $name;
-        //     }
-        // }
-
-        // return $request;
-
-    
+        
         $country = Country::where('id', $request->Section)->first();
         $city = City::where('id', $request->product)->first();
 
@@ -50,7 +37,7 @@ class OrderController extends Controller
             'expected_end_price' => $request->endPrice,
             'phone' => $request->phone,
             'contact_type' => $request->contact,
-            'type' => auth()->user()->kind == "cliect" ? ,
+            'type' => auth()->user()->kind == 'client' ? 'individual' : 'company',
             'user_id' => auth()->user()->id,
             'category_id' => $request->categoryId,
             'sub_category_id' => $request->subCategory,
@@ -76,14 +63,18 @@ class OrderController extends Controller
     public function peopleOrders()
     {
         $categoris = Category::all();
+        // return $categoris;
         $subcategoris = SubCategory::all();
+        // return $subcategoris;
         $services = Service::all();
+        // return $services;
         $countries = Country::all();
-        $user_orders = Order::where('order_type', "0")->where('ended_order', "0")->get();
+        // return $countries;
+        $user_orders = Order::where('type', 'individual')->where('status', 0)->get();
         // $company_orders = Order::where('order_type',"0")->get();
         //return $user_orders;
 
-        return view('order.peopleOrders', compact('categoris', 'subcategoris', 'services', 'countries', 'user_orders'));
+        return view('frontend.orders.peopleOrders', compact('categoris', 'subcategoris', 'services', 'countries', 'user_orders'));
     }
 
     public function companyOrders()

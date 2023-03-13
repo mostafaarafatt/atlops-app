@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('frontend.layouts.app')
 
 @section('head_script')
     <meta charset="utf-8">
@@ -23,9 +23,9 @@
                 @foreach ($categoris as $category)
                     <a onclick="refreshOrder({{ $category->id }})">
                         <div class="categories-item">
-                            <img src="images/{{ $category->category_image }}" alt="categories" width="70px"
+                            <img src="{{ $category->getImage() }}" alt="categories" width="70px"
                                 height="25px">
-                            <p> {{ $category->category_name }} </p>
+                            <p> {{ $category->name }} </p>
                         </div>
                     </a>
                 @endforeach
@@ -72,7 +72,7 @@
                                                             name="flexRadioDefault" id="star1"
                                                             onclick="refreshOrder({{ $category->id }})"1qw>
                                                         <label class="form-check-label" for="star1">
-                                                            {{ $category->category_name }} </label>
+                                                            {{ $category->name }} </label>
                                                     </div>
                                                 @endforeach
 
@@ -156,7 +156,7 @@
                                 onchange="console.log('change is firing')" id="city-search">
                                 <option value="" disabled selected>المدينة </option>
                                 @foreach ($countries as $country)
-                                    <option value="{{ $country->id }}">{{ $country->country_name }} </option>
+                                    <option value="{{ $country->id }}">{{ $country->name }} </option>
                                 @endforeach
                             </select>
                         </div>
@@ -170,7 +170,7 @@
                             <select name="Section" id="Section" class="form-select" id="city-search">
                                 <option value="" selected disabled>الدولة</option>
                                 @foreach ($countries as $country)
-                                    <option value="{{ $country->id }}">{{ $country->country_name }}</option>
+                                    <option value="{{ $country->id }}">{{ $country->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -190,7 +190,7 @@
                                     <div class="row g-0">
                                         <div class="col-md-2 d-flex align-items-center justify-content-center p-2">
                                             <a href="{{ route('orderdetails', ['id' => $order->id]) }}">
-                                                <img src='{{ asset($order->photo_path . $order->photo_name[0]) }}'
+                                                <img src='{{ $order->getImage() }}'
                                                     class=" rounded-circle img-fluid img-fluid" alt="..."
                                                     width="120px" height="120px">
                                             </a>
@@ -199,7 +199,7 @@
                                             <div class="card-body">
                                                 <div class="d-flex justify-content-between align-items-center">
                                                     <a href="{{ route('orderdetails', ['id' => $order->id]) }}">
-                                                        <h5 id="orderName" class="card-title"> {{ $order->orderName }}
+                                                        <h5 id="orderName" class="card-title"> {{ $order->name }}
                                                         </h5>
                                                     </a>
 
@@ -220,12 +220,12 @@
                                                 </div>
                                                 <small class="text-secondary fw-bold">{{ $order->country_name }} ,
                                                     {{ $order->town_name }}</small>
-                                                <p class="text-dark">{{ $order->orderDescription }}</p>
+                                                <p class="text-dark">{{ $order->description }}</p>
                                                 <div class="d-flex justify-content-between more-details">
-                                                    <p class="price fw-bold">السعر المتوقع: {{ $order->startPrice }} ألف -
-                                                        {{ $order->endPrice }} ألف</p>
+                                                    <p class="price fw-bold">السعر المتوقع: {{ $order->expected_start_price }} ألف -
+                                                        {{ $order->expected_end_price }} ألف</p>
                                                     <strong class="text-secondary">تم النشر فى
-                                                        {{ $order->date }}</strong>
+                                                        {{ $order->created_at }}</strong>
 
                                                 </div>
                                             </div>
@@ -394,7 +394,7 @@
                                         <div class="card-body">
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <a href="${route}">
-                                                    <h5 id="orderName" class="card-title"> ${element.orderName} </h5>
+                                                    <h5 id="orderName" class="card-title"> ${element.ame} </h5>
                                                 </a>
                                                 <button>
                                                     <i class="fa-solid fa-heart fa-2xl"></i>
