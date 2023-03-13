@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Frontend\Auth\FacebookController;
+use App\Http\Controllers\Frontend\Auth\GoogleController;
 use App\Http\Controllers\Frontend\Auth\PasswordResetController;
 use App\Http\Controllers\Frontend\MyAccount\UserController;
 use Illuminate\Support\Facades\Route;
@@ -24,3 +25,8 @@ Route::controller(FacebookController::class)->group(function(){
     Route::get('auth/facebook', 'redirectToFacebook')->name('auth.facebook');
     Route::get('auth/facebook/callback', 'handleFacebookCallback')->name('auth.facebook.callback');
 });
+Route::controller(GoogleController::class)->group(function(){
+    Route::get('auth/google', 'redirectToGoogle')->name('auth.google');
+    Route::get('auth/google/callback', 'handleGoogleCallback')->name('auth.google.callback');
+});
+

@@ -68,7 +68,7 @@
                             <h6><span>أو</span></h6>
 
                         </div>
-                        <a href="https://www.google.com/intl/ar_eg/chrome/" target="_blank">
+                        <a href="{{route('auth.google')}}" target="_blank">
                             <div class="d-flex login-google m-auto mb-3 mt-4 align-items-center justify-content-center">
                                 <img src="{{asset('images/chromel.png')}}" width="35" height="35">
                                 <p class="mx-2 mb-0 fw-bold">تسجيل الدخول بواسطة جوجل</p>
