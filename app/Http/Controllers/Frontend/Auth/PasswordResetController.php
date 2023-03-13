@@ -23,7 +23,7 @@ class PasswordResetController extends Controller
         if (!$user) {
             return redirect()->route('forgetPassword');
         }
-        return view('forgetPassword.confirm', compact('user', 'remainingTime'));
+        return view('frontend.auth.forgetPassword.confirm', compact('user', 'remainingTime'));
     }
     public function store(ValidateEmail $request)
     {
@@ -37,7 +37,7 @@ class PasswordResetController extends Controller
             [
                 'target' => $validated['email'],
                 'code' => $code,
-                'expires_at' => now()->addSeconds(123),
+                'expires_at' => now()->addSeconds(121),
             ]
         );
         event(new OtpSent($user, $code));
@@ -63,7 +63,7 @@ class PasswordResetController extends Controller
     public function resetPassword()
     {
         $id = session('id');
-        return view('forgetPassword.newPassword', compact('id'));
+        return view('frontend.auth.forgetPassword.newPassword', compact('id'));
     }
     public function setNewPassword($id, NewPasswordRequest $request)
     {

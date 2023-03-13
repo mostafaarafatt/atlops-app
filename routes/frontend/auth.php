@@ -5,7 +5,7 @@ use App\Http\Controllers\Frontend\MyAccount\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::controller(UserController::class)->group(function () {
-    Route::get('login', 'index')->name('frontend.login');
+    Route::get('user/login', 'index')->name('frontend.login');
     Route::post('custom-login', 'customLogin')->name('login.custom');
     Route::get('registration', 'registration')->name('register-user');
     Route::post('custom-registration', 'customRegistration')->name('register.custom');

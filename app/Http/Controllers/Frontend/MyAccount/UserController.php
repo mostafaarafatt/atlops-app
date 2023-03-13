@@ -26,16 +26,10 @@ class UserController extends Controller
 
     public function customLogin(LoginValidation $request)
     {
-        // $request->validate([
-        //     'email' => 'required|exists:users',
-        //     'password' => 'required',
-        // ]);
 
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            //dd(true);
-            return redirect()->intended('home')
-                ->withSuccess('Signed in');
+            return redirect()->to(route('home'));
         }
 
         return redirect("login")->withSuccess('Login details are not valid');
@@ -56,21 +50,21 @@ class UserController extends Controller
         }
 
         Auth::login($user);
-        return view('home');
+        return redirect()->to(route('home'));
     }
 
     public function create(array $data)
     {
         return User::create([
-            'firstName' => $data['firstName'],
-            'lastName' => $data['lastName'],
+            'name' => $data['firstName'],
+            'las_name' => $data['lastName'],
             'email' => $data['email'],
             'phone' => $data['phone'],
-            'date' => $data['date'],
-            'type' => $data['type'],
-            'communication' => $data['communication'],
+            'dob' => $data['date'],
+            'kind' => $data['type'] == 0 ? 'client' : 'provider',
+            // 'communication' => $data['communication'],
             'password' => Hash::make($data['password']),
-            'userDetails' => $data['userDetails'],
+            'bio' => $data['userDetails'],
         ]);
     }
 
@@ -88,6 +82,6 @@ class UserController extends Controller
     public function signOut()
     {
         Auth::logout();
-        return Redirect('login');
+        return redirect()->to(route('frontend.login'));
     }
 }

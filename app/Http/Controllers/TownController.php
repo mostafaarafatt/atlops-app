@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Town;
 use Illuminate\Http\Request;
+use Modules\Countries\Entities\City;
 
 class TownController extends Controller
 {
@@ -16,31 +17,31 @@ class TownController extends Controller
     {
         //return $request;
         $data = $request->all();
-        Town::create($data);
+        City::create($data);
         // return redirect('townsCountry/' . $request->country_id);
         return redirect()->route('townsCountry', ['id' => $request->country_id]);
     }
 
     public function editTown($id)
     {
-        $town = Town::where('id', $id)->first();
+        $town = City::where('id', $id)->first();
         return view('dashboard.towns.edittown', compact('town'));
     }
 
     public function editTowndone(Request $request, $id)
     {
-        Town::where('id', $id)->update([
+        City::where('id', $id)->update([
             'town_name' => $request->town_name
         ]);
 
-        $town  = Town::where('id', $id)->get();
+        $town  = City::where('id', $id)->get();
         // return redirect('townsCountry/' . $town[0]->country_id);
         return redirect()->route('townsCountry', ['id' => $town[0]->country_id]);
     }
 
     public function deleteTown(Request $request)
     {
-        Town::where('id', $request->id_town)->delete();
+        City::where('id', $request->id_town)->delete();
         return back();
     }
 }

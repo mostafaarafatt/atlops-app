@@ -1,7 +1,6 @@
 <?php
 
-use App\Http\Controllers\CategoriesController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Frontend\MyAccount\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::controller(ProfileController::class)->group(function () {
@@ -12,9 +11,3 @@ Route::controller(ProfileController::class)->group(function () {
     Route::post('changePasswordDone', 'changePasswordDone')->name('changePasswordDone');
 });
 
-
-Route::controller(CategoriesController::class)->group(function () {
-    Route::get('categoriess', 'index')->name('categoriess');
-    Route::get('orderDetails/{id}', 'orderDetails')->name('orderDetails');
-    Route::get('country/{id}', 'gettowns');
-});
