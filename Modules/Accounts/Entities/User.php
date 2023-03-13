@@ -79,6 +79,7 @@ class User extends Authenticatable implements HasMedia, HasLocalePreference
         'preferred_locale',
         'username',
         'can_access',
+        'facebook_id'
     ];
 
     /**

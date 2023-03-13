@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Frontend\Auth\FacebookController;
 use App\Http\Controllers\Frontend\Auth\PasswordResetController;
 use App\Http\Controllers\Frontend\MyAccount\UserController;
 use Illuminate\Support\Facades\Route;
@@ -19,3 +20,7 @@ Route::get('confirm-otp', [PasswordResetController::class, 'index'])->name('conf
 Route::post('check-code/{id}', [PasswordResetController::class, 'checkValid'])->name('check-code');
 Route::get('reset-password', [PasswordResetController::class, 'resetPassword'])->name('reset-password');
 Route::post('reset-password/{id}', [PasswordResetController::class, 'setNewPassword'])->name('set-new-password');
+Route::controller(FacebookController::class)->group(function(){
+    Route::get('auth/facebook', 'redirectToFacebook')->name('auth.facebook');
+    Route::get('auth/facebook/callback', 'handleFacebookCallback');
+});
