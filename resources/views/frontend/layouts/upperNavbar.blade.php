@@ -43,20 +43,32 @@
                              </ul>
                              @auth
 
-                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill">
-                                 {{ auth()->user()?->unreadNotifications?->count() }}
-                             </span>
+                                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill">
+                                     {{ auth()->user()?->unreadNotifications?->count() }}
+                                 </span>
                              @endauth
                          </li>
                      </ul>
+                     @auth
 
+                         <div class="d-flex align-items-center login-button mx-3">
+                             <div class="d-flex align-items-center login-button mx-5">
+                                 <a href="#" class="custom-link"> {{ auth()?->user()?->name }} <i
+                                         class="ms-1 gg-chevron-down "></i></a>
+                             </div>
+                         </div>
+                     @endauth
 
-                     <div class="d-flex align-items-center login-button mx-3">
-                        <div class="d-flex align-items-center login-button mx-5">
-                            <a href="{{ route('frontend.login') }}" class="custom-link">تسجيل الدخول <i
-                                    class="ms-1 gg-chevron-down "></i></a>
-                        </div>
-                     </div>
+                     @guest
+
+                         <div class="d-flex align-items-center login-button mx-3">
+                             <div class="d-flex align-items-center login-button mx-5">
+                                 <a href="{{ route('frontend.login') }}" class="custom-link">تسجيل الدخول <i
+                                         class="ms-1 gg-chevron-down "></i></a>
+                             </div>
+                         </div>
+                     @endguest
+
                      <div id="subMenu">
                          <span class="hamLine"></span>
                          <span class="hamLine"></span>
@@ -108,10 +120,12 @@
                                                      </li>
                                                      <li class="">
                                                          <a class="d-flex p-2  w-100" href="#">
-                                                             <img src="images/user2.png" width="40" height="40">
+                                                             <img src="images/user2.png" width="40"
+                                                                 height="40">
                                                              <div class=" mx-2">
                                                                  <h6 class="mb-0 name">أحمد محمد</h6>
-                                                                 <p class="time text-end mt-1 text-dark">منذ 3 دقائق</p>
+                                                                 <p class="time text-end mt-1 text-dark">منذ 3 دقائق
+                                                                 </p>
                                                              </div>
 
                                                              <p class="mb-0 mx-1 content  text-dark">علّق لك على منتجك

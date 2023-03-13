@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ChatController;
+use App\Http\Controllers\Frontend\Chat\ChatController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/new-chat', [ChatController::class, 'getChat'])->name('getChat');

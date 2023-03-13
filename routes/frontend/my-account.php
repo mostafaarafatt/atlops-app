@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoriesController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Frontend\MyAccount\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::controller(ProfileController::class)->group(function () {

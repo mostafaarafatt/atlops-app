@@ -56,21 +56,21 @@ class UserController extends Controller
         }
 
         Auth::login($user);
-        return view('home');
+        return redirect()->to(route('home'));
     }
 
     public function create(array $data)
     {
         return User::create([
-            'firstName' => $data['firstName'],
-            'lastName' => $data['lastName'],
+            'name' => $data['firstName'],
+            'las_name' => $data['lastName'],
             'email' => $data['email'],
             'phone' => $data['phone'],
-            'date' => $data['date'],
-            'type' => $data['type'],
-            'communication' => $data['communication'],
+            'dob' => $data['date'],
+            'kind' => $data['type'],
+            // 'communication' => $data['communication'],
             'password' => Hash::make($data['password']),
-            'userDetails' => $data['userDetails'],
+            'bio' => $data['userDetails'],
         ]);
     }
 
