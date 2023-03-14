@@ -90,7 +90,7 @@
                                      </a></div>
                                  @auth
 
-                                     <div class="my-4"><a href="{{ route('signout') }}" class="custom-link"><i
+                                     <div class="my-4"><a href="{{ route('frontend.signout') }}" class="custom-link"><i
                                                  class="fa-solid fa-right-from-bracket ms-2 fa-xl"></i>تسجيل الخروج </a>
                                      </div>
                                  @endauth

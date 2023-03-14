@@ -11,7 +11,6 @@ Route::controller(UserController::class)->group(function () {
     Route::post('custom-login', 'customLogin')->name('login.custom');
     Route::get('registration', 'registration')->name('register-user');
     Route::post('custom-registration', 'customRegistration')->name('register.custom');
-    Route::get('signout',  'signOut')->name('signout');
     Route::get('getallcategories', 'getallcategories')->name('getallcategories');
 
 });
