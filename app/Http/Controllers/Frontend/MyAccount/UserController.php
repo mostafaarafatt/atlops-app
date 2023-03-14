@@ -32,7 +32,7 @@ class UserController extends Controller
             return redirect()->to(route('home'));
         }
 
-        return redirect("login")->withSuccess('Login details are not valid');
+        return redirect(route('frontend.login'))->with('errors','بيانات الدخول غير صحيحة');
     }
 
     public function registration()

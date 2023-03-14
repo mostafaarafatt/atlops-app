@@ -335,7 +335,7 @@
                             'user_id': $user_id
                         },
                         success: function(data) {
-                            alert('تم اضافه المنتج الى المفضلة')
+                           // alert('تم اضافه المنتج الى المفضلة')
                         }
                     })
 
@@ -350,7 +350,7 @@
                             'user_id': $user_id
                         },
                         success: function(data) {
-                            alert('تم حذف المنتج من المفضلة')
+                           // alert('تم حذف المنتج من المفضلة')
                         }
                     })
                 }

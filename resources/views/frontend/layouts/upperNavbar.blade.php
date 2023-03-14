@@ -52,7 +52,7 @@
                      @auth
                          <div class="d-flex align-items-center login-button mx-3">
                              <div class="d-flex align-items-center login-button mx-5">
-                                 <a href="{{ route('profile') }}" class="custom-link"> {{ auth()?->user()?->name }} <i
+                                 <a href="{{ route('profile') }}" class="custom-link"> {{ auth()?->user()?->full_name }} <i
                                          class="ms-1 gg-chevron-down "></i></a>
                              </div>
                          </div>
