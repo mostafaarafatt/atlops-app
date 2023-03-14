@@ -29,7 +29,6 @@ class OrderController extends Controller
 
         $country = Country::where('id', $request->Section)->first();
         $city = City::where('id', $request->product)->first();
-
         $order = Order::create([
             'name' => $request->orderName,
             'description' => $request->orderDescription,
@@ -46,7 +45,6 @@ class OrderController extends Controller
             'city_id' => $city->id,
 
         ]);
-
         if ($images = $request->file('photo')) {
             foreach ($images as $image) {
                 $order->addMedia($image)->toMediaCollection('orders');
