@@ -250,6 +250,6 @@ class User extends Authenticatable implements HasMedia, HasLocalePreference
 
     protected function getAvatarAttribute()
     {
-        return $this->getFirstMediaUrl('avatars') ? asset($this->getFirstMediaUrl('avaters')) : asset('/images/user.png');
+        return $this->getFirstMediaUrl('avatars') ? asset($this->getFirstMediaUrl('avatars')) : asset('/images/user.png');
     }
 }

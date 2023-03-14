@@ -47,8 +47,8 @@ class ProfileController extends Controller
 
         $requestImage = $request->photo;
         if ($requestImage) {
-            $user->clearMediaCollection('user_image');
-            $user->addMediaFromRequest('photo')->toMediaCollection('user_image');
+            $user->clearMediaCollection('avatars');
+            $user->addMediaFromRequest('photo')->toMediaCollection('avatars');
         }
 
         $keys = ['firstName', 'lastName', 'email', 'phone', 'type'];
@@ -81,7 +81,7 @@ class ProfileController extends Controller
             $user->update([
                 'password' => $new_password
             ]);
-            return redirect('home');
+            return redirect()->route('home');
         } else {
             return redirect('frontend.changePassword');
         }

@@ -14,7 +14,7 @@
                         <div class="d-flex  align-items-center change-img mb-4 p-2 w-100">
                             <div class="  d-flex justify-content-center align-items-center">
                                 <div class=" ">
-                                    <img src='{{ auth()->user()?->getFirstMediaUrl('user_image') }}' width="80px"
+                                    <img src='{{ auth()->user()?->avatar }}' width="80px"
                                         height="80px" id="img">
                                     <input type="file" name="photo" id="upload-photo"
                                         onchange="document.getElementById('img').src = window.URL.createObjectURL(this.files[0])" />
