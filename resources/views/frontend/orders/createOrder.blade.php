@@ -172,7 +172,7 @@
                                 <div class="col-md-6 mb-3 ">
                                     <label class="mb-3 fw-bold"> رقم الجوال </label>
                                     <input type="text" value="{{ auth()?->user()?->phone }}" name="phone"
-                                        class="form-control" id="" readonly>
+                                        class="form-control" id="">
                                 </div>
                                 <label class="mb-3 fw-bold">طريقة التواصل</label>
                                 <div class="col-md-12 mb-3">
