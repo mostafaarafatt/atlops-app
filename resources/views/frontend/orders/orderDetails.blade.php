@@ -124,6 +124,7 @@
                             </div>`;
 
                     $("#content").append(element);
+                    $("#comment").val('');
                 },
             })
         }
@@ -144,7 +145,7 @@
                 success: function(data) {
                     //console.log(data.user);
                     var img = "{{ asset('Attachments/user') }}" + "/" + data.user.photo;
-                    var name = data.user.firstName;
+                    var name = data.user.name;
                     console.log(img);
                     var element = `<div class="mt-3 d-flex  w-100">
                                                         <a href="">

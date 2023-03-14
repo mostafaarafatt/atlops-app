@@ -8,7 +8,7 @@
                             <img src="{{ $order->user->getFirstMediaUrl('user_image') }}" class="rounded-circle" width="100px"
                                 height="100">
                             <h6 class=" mb-0 me-3">{{ $order->user?->name }}
-                                {{ $order->user?->lastName }}</h6>
+                                {{ $order->user?->last_name }}</h6>
                         </div>
                         <div class="address  d-flex align-items-center ">
                             <i class="fa-solid fa-location-dot fa-xl"></i>
@@ -212,7 +212,7 @@
                                             class="rounded-circle" width="50px" height="50">
                                     </a>
 
-                                    <input type="comment" name="comment" class="form-control mx-2 ps-5"
+                                    <input type="comment" id="comment" name="comment" class="form-control mx-2 ps-5"
                                         placeholder="اكتب تعليقك هنا" aria-describedby="">
 
                                     <input type="text" name="user_id" value="{{ auth()->user()->id }}" hidden>

@@ -242,7 +242,7 @@ class OrderController extends Controller
         $data = [
             "registration_ids" => $FcmToken,
             "notification" => [
-                "title" => $user->firstName . $user->lastName . " رد على تعليقك",
+                "title" => $user->name . $user->last_name . " رد على تعليقك",
                 "body" => $request->comment,
             ]
         ];
