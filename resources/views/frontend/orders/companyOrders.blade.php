@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('frontend.layouts.app')
 
 @section('head_script')
     <meta charset="utf-8">
@@ -183,7 +183,7 @@
                     </div>
 
                     <div id="content">
-                        @foreach ($user_orders as $order)
+                        @foreach ($company_orders as $order)
                             <div class="col-md-12 my-2">
                                 <div class="card mb-3 order-card">
                                     <div class="row g-0">

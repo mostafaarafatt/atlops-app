@@ -83,10 +83,9 @@ class OrderController extends Controller
         $subcategoris = Subcategory::all();
         $services = Service::all();
         $countries = Country::all();
-        $company_orders = Order::where('order_type', "1")->where('ended_order', "0")->get();
-
+        $company_orders = Order::where('type', "company")->where('status', 1)->get();
         // return $orders;
-        return view('order.companyOrders', compact('categoris', 'subcategoris', 'services', 'countries', 'company_orders'));
+        return view('frontend.orders.companyOrders', compact('categoris', 'subcategoris', 'services', 'countries', 'company_orders'));
     }
 
     public function orderdetails($id)
@@ -129,19 +128,19 @@ class OrderController extends Controller
         $order = Order::where('id', $id)->first();
         $comments = Comment::where('order_id', $id)->get();
 
-        return view('order.endOrderDetails', compact('order', 'comments'));
+        return view('frontend.orders.endOrderDetails', compact('order', 'comments'));
     }
 
     public function endOrderDone($id)
     {
-        Order::where('id', $id)->update(['ended_order' => "1"]);
-        return redirect('home');
+        Order::where('id', $id)->update(['status' => 1]);
+        return redirect()->route('home');
     }
 
     public function rePublishOrder($id)
     {
-        Order::where('id', $id)->update(['ended_order' => "0"]);
-        return redirect('home');
+        Order::where('id', $id)->update(['status' => 0]);
+        return redirect()->route('home');
     }
 
     public function favorites()

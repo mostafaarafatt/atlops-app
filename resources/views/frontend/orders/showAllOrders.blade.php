@@ -57,14 +57,14 @@
                                                         <a href="{{ route('orderdetails', ['id' => $order->id]) }}">
                                                             <h5 class="card-title">{{ $order->name }}</h5>
                                                         </a>
-                                                        <a href="{{ route('endOrder', ['id' => $order->id]) }}"
+                                                        <a href="{{ route('endOrderDone', ['id' => $order->id]) }}"
                                                             class="text-dark fw-bold">
                                                             إنهاء الطلب
                                                         </a>
 
                                                     </div>
-                                                    <small class="text-secondary fw-bold">{{ $order->country()->name }} ,
-                                                        {{ $order->city()->name }}</small>
+                                                    <small class="text-secondary fw-bold">{{ $order->country->name }} ,
+                                                        {{ $order->city->name }}</small>
                                                     <p class="text-dark">{{ $order->orderDescription }}</p>
                                                     <div class="d-flex justify-content-between more-details">
                                                         <p class="price fw-bold">السعر المتوقع: {{ $order->expected_start_price }} ألف
@@ -93,7 +93,7 @@
                                         <div class="row bg-white order-card mx-2">
                                             <div class="col-md-2 d-flex align-items-center justify-content-center p-2">
                                                 <a href="orderDetails.html">
-                                                    <img src='{{ asset($order->photo_path . $order->photo_name[0]) }}'
+                                                    <img src=''
                                                         class=" rounded-circle img-fluid img-fluid" alt="..."
                                                         width="120px" height="120px">
 
@@ -103,22 +103,22 @@
                                                 <div class="card-body pt-3 ">
                                                     <div class="d-flex justify-content-between align-items-end">
                                                         <a href="orderDetails.html">
-                                                            <h5 class="card-title">{{ $order->orderName }}</h5>
+                                                            <h5 class="card-title">{{ $order->name }}</h5>
                                                         </a>
-                                                        <a href="{{ route('endOrder', ['id' => $order->id]) }}"
+                                                        <a href="{{ route('endOrderDone', ['id' => $order->id]) }}"
                                                             class="text-dark fw-bold">
                                                             إنهاء الطلب
                                                         </a>
 
                                                     </div>
-                                                    <small class="text-secondary fw-bold">{{ $order->country_name }} ,
-                                                        {{ $order->town_name }}</small>
-                                                    <p class="text-dark">{{ $order->orderDescription }}</p>
+                                                    <small class="text-secondary fw-bold">{{ $order->country->name }} ,
+                                                        {{ $order->city->name }}</small>
+                                                    <p class="text-dark">{{ $order->description }}</p>
                                                     <div class="d-flex justify-content-between more-details">
-                                                        <p class="price fw-bold">السعر المتوقع: {{ $order->startPrice }}
-                                                            ألف - {{ $order->endPrice }} ألف</p>
+                                                        <p class="price fw-bold">السعر المتوقع: {{ $order->expected_start_price }}
+                                                            ألف - {{ $order->expected_end_price }} ألف</p>
                                                         <p class="type  fw-bold">النوع: شركات ومؤسسات</p>
-                                                        <strong class="text-secondary">{{ $order->date }}</strong>
+                                                        <strong class="text-secondary">{{ $order->created_at }}</strong>
 
 
                                                     </div>
@@ -153,18 +153,18 @@
                                         <div class="card-body pt-3 ">
                                             <div class="d-flex justify-content-between align-items-end">
                                                 <a href="orderDetails.html">
-                                                    <h5 class="card-title">{{ $order->orderName }}</h5>
+                                                    <h5 class="card-title">{{ $order->name }}</h5>
                                                 </a>
                                                 <a href="{{ route('rePublishOrder',['id'=>$order->id]) }}" class="text-dark fw-bold">
                                                     إعادة نشر الطلب </a>
 
                                             </div>
-                                            <small class="text-secondary fw-bold">{{ $order->country_name }} ,
-                                                {{ $order->town_name }}</small>
-                                            <p class="text-dark">{{ $order->orderDescription }}</p>
+                                            <small class="text-secondary fw-bold">{{ $order->country->name }} ,
+                                                {{ $order->city->name }}</small>
+                                            <p class="text-dark">{{ $order->description }}</p>
                                             <div class="d-flex justify-content-between more-details">
-                                                <p class="price fw-bold">السعر المتوقع: {{ $order->startPrice }} ألف -
-                                                    {{ $order->endPrice }} ألف</p>
+                                                <p class="price fw-bold">السعر المتوقع: {{ $order->expected_start_price }} ألف -
+                                                    {{ $order->expected_end_price }} ألف</p>
                                                 <strong class="text-secondary">{{ $order->date }}</strong>
 
 
@@ -181,7 +181,7 @@
                                 <div class="row bg-white order-card mx-2">
                                     <div class="col-md-2 d-flex align-items-center justify-content-center p-2">
                                         <a href="orderDetails.html">
-                                            <img src='{{ asset($order->photo_path . $order->photo_name[0]) }}'
+                                            <img src=''
                                                 class=" rounded-circle img-fluid img-fluid" alt="..." width="120px"
                                                 height="120px">
 
@@ -191,18 +191,18 @@
                                         <div class="card-body pt-3 ">
                                             <div class="d-flex justify-content-between align-items-end">
                                                 <a href="orderDetails.html">
-                                                    <h5 class="card-title">{{ $order->orderName }}</h5>
+                                                    <h5 class="card-title">{{ $order->name }}</h5>
                                                 </a>
                                                 <a href="{{ route('rePublishOrder',['id'=>$order->id]) }}" class="text-dark fw-bold">
                                                     إعادة نشر الطلب </a>
 
                                             </div>
-                                            <small class="text-secondary fw-bold">{{ $order->country_name }} ,
-                                                {{ $order->town_name }}</small>
-                                            <p class="text-dark">{{ $order->orderDescription }}</p>
+                                            <small class="text-secondary fw-bold">{{ $order->country->name }} ,
+                                                {{ $order->city->name }}</small>
+                                            <p class="text-dark">{{ $order->description }}</p>
                                             <div class="d-flex justify-content-between more-details">
-                                                <p class="price fw-bold">السعر المتوقع: {{ $order->startPrice }} ألف -
-                                                    {{ $order->endPrice }} ألف</p>
+                                                <p class="price fw-bold">السعر المتوقع: {{ $order->expected_start_price }} ألف -
+                                                    {{ $order->expected_end_price }} ألف</p>
                                                 <strong class="text-secondary">{{ $order->date }}</strong>
 
 

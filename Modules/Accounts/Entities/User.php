@@ -2,6 +2,7 @@
 
 namespace Modules\Accounts\Entities;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use AhmedAliraqi\LaravelMediaUploader\Entities\Concerns\HasUploader;
 use App\Http\Filters\Filterable;
 use App\Models\Otp;
@@ -82,7 +83,7 @@ class User extends Authenticatable implements HasMedia, HasLocalePreference
         'facebook_id',
         'google_id',
         'communication_type',
-        
+
     ];
 
     /**
@@ -239,10 +240,16 @@ class User extends Authenticatable implements HasMedia, HasLocalePreference
     {
         return $this->name . ' ' . $this->last_name;
     }
-//    /** Start mutators  **/
-//    public function setCanAccessAttribute($value): void
-//    {
-//        $this->attributes['can_access'] = $value == 1;
-//    }
-//    /** End mutators  **/
+    //    /** Start mutators  **/
+    //    public function setCanAccessAttribute($value): void
+    //    {
+    //        $this->attributes['can_access'] = $value == 1;
+    //    }
+    //    /** End mutators  **/
+
+
+    protected function getAvatarAttribute()
+    {
+        return $this->getFirstMediaUrl('avatars') ? asset($this->getFirstMediaUrl('avaters')) : asset('/images/user.png');
+    }
 }
