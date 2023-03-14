@@ -9,9 +9,9 @@
                         <div class="user-info d-flex align-items-center justify-content-between  mb-3">
                             <div class="name  d-flex align-items-center ">
                                 {{-- <img src="Attachments/user/{{ $user->photo }}" class="rounded-circle" width="120px" height="120"> --}}
-                                <img src='{{ auth()->user()?->avatars }}' class="rounded-circle" width="120px"
+                                <img src='{{ auth()->user()?->avatar }}' class="rounded-circle" width="120px"
                                 height="120">
-                                <h6 class=" mb-0 me-3">{{ $user->firstName }} {{ $user->lastName }}</h6>
+                                <h6 class=" mb-0 me-3">{{ $user->name }} {{ $user->last_name }}</h6>
                             </div>
                             <div class="address  d-flex align-items-center ">
                                 <i class="fa-solid fa-location-dot fa-xl"></i>

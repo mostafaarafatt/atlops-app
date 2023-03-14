@@ -3,6 +3,7 @@
 @section('head_script')
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{-- <meta name="csrf-token" content="{{ csrf_token() }}" /> --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
@@ -23,8 +24,7 @@
                 @foreach ($categoris as $category)
                     <a onclick="refreshOrder({{ $category->id }})">
                         <div class="categories-item">
-                            <img src="{{ $category->getImage() }}" alt="categories" width="70px"
-                                height="25px">
+                            <img src="{{ $category->getImage() }}" alt="categories" width="70px" height="25px">
                             <p> {{ $category->name }} </p>
                         </div>
                     </a>
@@ -218,11 +218,12 @@
                                                     @endif
 
                                                 </div>
-                                                <small class="text-secondary fw-bold">{{ $order->country_name }} ,
-                                                    {{ $order->town_name }}</small>
+                                                <small class="text-secondary fw-bold">{{ $order->country->name }} ,
+                                                    {{ $order->city->name }}</small>
                                                 <p class="text-dark">{{ $order->description }}</p>
                                                 <div class="d-flex justify-content-between more-details">
-                                                    <p class="price fw-bold">السعر المتوقع: {{ $order->expected_start_price }} ألف -
+                                                    <p class="price fw-bold">السعر المتوقع:
+                                                        {{ $order->expected_start_price }} ألف -
                                                         {{ $order->expected_end_price }} ألف</p>
                                                     <strong class="text-secondary">تم النشر فى
                                                         {{ $order->created_at }}</strong>
@@ -268,7 +269,7 @@
         })
     </script>
 
-    {{-- script for countries and towns --}}
+    {{-- script for for ger cities of countries --}}
     <script>
         $(document).ready(function() {
             $('select[name="Section"]').on('change', function() {
@@ -301,7 +302,7 @@
             const CSRF_TOKEN = $('meta[name="csrf_token"]').attr('cnotent');
             var love_order;
             order_id = $order_id;
-            // console.log(order_id);
+            //console.log(order_id);
             user_id = $user_id;
 
             // function to get the value of love_order of specific order and then check it
@@ -309,7 +310,7 @@
                 url: "/api/order/getlovedorder",
                 type: "post",
                 data: {
-                    CSRF_TOKEN,
+                    "_token": "{{ csrf_token() }}",
                     'order_id': $order_id,
                     'user_id': $user_id
                 },
@@ -329,12 +330,12 @@
                         url: "/api/order/addtowishlist",
                         type: 'post',
                         data: {
-                            CSRF_TOKEN,
+                            "_token": "{{ csrf_token() }}",
                             'order_id': $order_id,
                             'user_id': $user_id
                         },
                         success: function(data) {
-                           // alert('تم اضافه المنتج الى المفضلة')
+                            alert('تم اضافه المنتج الى المفضلة')
                         }
                     })
 
@@ -344,12 +345,12 @@
                         url: "/api/order/removefromwishlist",
                         type: 'post',
                         data: {
-                            CSRF_TOKEN,
+                            "_token": "{{ csrf_token() }}",
                             'order_id': $order_id,
                             'user_id': $user_id
                         },
                         success: function(data) {
-                           // alert('تم حذف المنتج من المفضلة')
+                            alert('تم حذف المنتج من المفضلة')
                         }
                     })
                 }
@@ -363,20 +364,21 @@
             event.preventDefault();
             const CSRF_TOKEN = $('meta[name="csrf_token"]').attr('cnotent');
             cat_id = $category_id;
-            //console.log(cat_id);
+            console.log(cat_id);
             $.ajax({
 
                 url: "/api/order/sort",
                 type: 'post',
                 data: {
-                    CSRF_TOKEN,
+                    "_token": "{{ csrf_token() }}",
                     'category_id': $category_id
                 },
                 success: function(data) {
+                    console.log(data);
                     $("#content").empty();
                     data.forEach(element => {
                         console.log(element);
-                        var img = "{{ asset('') }}" + element.photo_path + element.photo_name[0];
+                        var img = "{{ asset('') }}";
                         var route = window.location.origin + '/orderdetails/' + element.id;
                         console.log(route);
                         var ele = `
@@ -385,7 +387,7 @@
                                 <div class="row g-0">
                                     <div class="col-md-2 d-flex align-items-center justify-content-center p-2">
                                         <a href="${route}">
-                                            <img src=${img}
+                                            <img src='${img}'
                                                 class=" rounded-circle img-fluid img-fluid" alt="..." width="120px"
                                                 height="120px">
                                         </a>
@@ -394,19 +396,19 @@
                                         <div class="card-body">
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <a href="${route}">
-                                                    <h5 id="orderName" class="card-title"> ${element.orderName} </h5>
+                                                    <h5 id="orderName" class="card-title"> ${element.name} </h5>
                                                 </a>
                                                 <button>
                                                     <i class="fa-solid fa-heart fa-2xl"></i>
                                                 </button>
 
                                             </div>
-                                            <small class="text-secondary fw-bold">${element.country_name} , ${element.town_name}</small>
+                                            <small class="text-secondary fw-bold">${element.name} , ${element.name}</small>
                                             <p class="text-dark">${element.orderDescription}</p>
                                             <div class="d-flex justify-content-between more-details">
-                                                <p class="price fw-bold">السعر المتوقع: ${element.startPrice} ألف -
-                                                    ${element.endPrice} ألف</p>
-                                                <strong class="text-secondary">تم النشر فى ${element.date}</strong>
+                                                <p class="price fw-bold">السعر المتوقع: ${element.expected_start_price} ألف -
+                                                    ${element.expected_end_price} ألف</p>
+                                                <strong class="text-secondary">تم النشر فى ${element.created_at}</strong>
 
                                             </div>
 
@@ -438,6 +440,7 @@
                         type: "post",
                         dataType: "json",
                         data: {
+                            "_token": "{{ csrf_token() }}",
                             'value': SortValue,
                             'category_id': cat_id,
                         },
@@ -445,8 +448,7 @@
                             $("#content").empty();
                             data.forEach(element => {
                                 console.log(element);
-                                var img = "{{ asset('') }}" + element.photo_path +
-                                    element.photo_name[0];
+                                var img = "{{ asset('') }}";
                                 var route = window.location.origin + '/orderdetails/' +
                                     element.id;
                                 console.log(route);
@@ -456,7 +458,7 @@
                                 <div class="row g-0">
                                     <div class="col-md-2 d-flex align-items-center justify-content-center p-2">
                                         <a href="${route}">
-                                            <img src=${img}
+                                            <img src='${img}'
                                                 class=" rounded-circle img-fluid img-fluid" alt="..." width="120px"
                                                 height="120px">
                                         </a>
@@ -465,19 +467,19 @@
                                         <div class="card-body">
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <a href="${route}">
-                                                    <h5 id="orderName" class="card-title"> ${element.orderName} </h5>
+                                                    <h5 id="orderName" class="card-title"> ${element.name} </h5>
                                                 </a>
                                                 <button>
                                                     <i class="fa-solid fa-heart fa-2xl"></i>
                                                 </button>
 
                                             </div>
-                                            <small class="text-secondary fw-bold">${element.country_name} , ${element.town_name}</small>
+                                            <small class="text-secondary fw-bold">${element.name} , ${element.name}</small>
                                             <p class="text-dark">${element.orderDescription}</p>
                                             <div class="d-flex justify-content-between more-details">
-                                                <p class="price fw-bold">السعر المتوقع: ${element.startPrice} ألف -
-                                                    ${element.endPrice} ألف</p>
-                                                <strong class="text-secondary">تم النشر فى ${element.date}</strong>
+                                                <p class="price fw-bold">السعر المتوقع: ${element.expected_start_price} ألف -
+                                                    ${element.expected_end_price} ألف</p>
+                                                <strong class="text-secondary">تم النشر فى ${element.created_at}</strong>
 
                                             </div>
 
@@ -512,6 +514,7 @@
                         type: "post",
                         dataType: "json",
                         data: {
+                            "_token": "{{ csrf_token() }}",
                             'value': country,
                             'category_id': cat_id,
                             'sort_id': sort_id
@@ -520,8 +523,7 @@
                             $("#content").empty();
                             data.forEach(element => {
                                 console.log(element);
-                                var img = "{{ asset('') }}" + element.photo_path +
-                                    element.photo_name[0];
+                                var img = "{{ asset('') }}";
                                 var route = window.location.origin + '/orderdetails/' +
                                     element.id;
                                 console.log(route);
@@ -531,7 +533,7 @@
                                 <div class="row g-0">
                                     <div class="col-md-2 d-flex align-items-center justify-content-center p-2">
                                         <a href="${route}">
-                                            <img src=${img}
+                                            <img src='${img}'
                                                 class=" rounded-circle img-fluid img-fluid" alt="..." width="120px"
                                                 height="120px">
                                         </a>
@@ -540,19 +542,19 @@
                                         <div class="card-body">
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <a href="${route}">
-                                                    <h5 id="orderName" class="card-title"> ${element.orderName} </h5>
+                                                    <h5 id="orderName" class="card-title"> ${element.name} </h5>
                                                 </a>
                                                 <button>
                                                     <i class="fa-solid fa-heart fa-2xl"></i>
                                                 </button>
 
                                             </div>
-                                            <small class="text-secondary fw-bold">${element.country_name} , ${element.town_name}</small>
+                                            <small class="text-secondary fw-bold">${element.name} , ${element.name}</small>
                                             <p class="text-dark">${element.orderDescription}</p>
                                             <div class="d-flex justify-content-between more-details">
-                                                <p class="price fw-bold">السعر المتوقع: ${element.startPrice} ألف -
-                                                    ${element.endPrice} ألف</p>
-                                                <strong class="text-secondary">تم النشر فى ${element.date}</strong>
+                                                <p class="price fw-bold">السعر المتوقع: ${element.expected_start_price} ألف -
+                                                    ${element.expected_end_price} ألف</p>
+                                                <strong class="text-secondary">تم النشر فى ${element.created_at}</strong>
 
                                             </div>
 
@@ -574,7 +576,7 @@
         });
     </script>
 
-    {{-- script for filter orders using towns --}}
+    {{-- script for filter orders using cities --}}
     <script>
         $(document).ready(function() {
             $('#product').on('change', function() {
@@ -586,6 +588,7 @@
                         type: "post",
                         dataType: "json",
                         data: {
+                            "_token": "{{ csrf_token() }}",
                             'value': town,
                             'category_id': cat_id,
                             'sort_id': sort_id,
@@ -595,8 +598,7 @@
                             $("#content").empty();
                             data.forEach(element => {
                                 console.log(element);
-                                var img = "{{ asset('') }}" + element.photo_path +
-                                    element.photo_name[0];
+                                var img = "{{ asset('') }}";
                                 var route = window.location.origin + '/orderdetails/' +
                                     element.id;
                                 console.log(route);
@@ -606,7 +608,7 @@
                                 <div class="row g-0">
                                     <div class="col-md-2 d-flex align-items-center justify-content-center p-2">
                                         <a href="${route}">
-                                            <img src=${img}
+                                            <img src='${img}'
                                                 class=" rounded-circle img-fluid img-fluid" alt="..." width="120px"
                                                 height="120px">
                                         </a>
@@ -615,19 +617,19 @@
                                         <div class="card-body">
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <a href="${route}">
-                                                    <h5 id="orderName" class="card-title"> ${element.orderName} </h5>
+                                                    <h5 id="orderName" class="card-title"> ${element.name} </h5>
                                                 </a>
                                                 <button>
                                                     <i class="fa-solid fa-heart fa-2xl"></i>
                                                 </button>
 
                                             </div>
-                                            <small class="text-secondary fw-bold">${element.country_name} , ${element.town_name}</small>
+                                            <small class="text-secondary fw-bold">${element.name} , ${element.name}</small>
                                             <p class="text-dark">${element.orderDescription}</p>
                                             <div class="d-flex justify-content-between more-details">
-                                                <p class="price fw-bold">السعر المتوقع: ${element.startPrice} ألف -
-                                                    ${element.endPrice} ألف</p>
-                                                <strong class="text-secondary">تم النشر فى ${element.date}</strong>
+                                                <p class="price fw-bold">السعر المتوقع: ${element.expected_start_price} ألف -
+                                                    ${element.expected_end_price} ألف</p>
+                                                <strong class="text-secondary">تم النشر فى ${element.created_at}</strong>
 
                                             </div>
 

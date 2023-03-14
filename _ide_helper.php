@@ -4,7 +4,7 @@
 
 /**
  * A helper file for Laravel, to provide autocomplete information to your IDE
- * Generated for Laravel 8.83.23.
+ * Generated for Laravel 8.83.27.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -2192,6 +2192,17 @@
         {            //Method inherited from \Illuminate\Auth\SessionGuard         
                         /** @var \Lab404\Impersonate\Guard\SessionGuard $instance */
                         return $instance->setRequest($request);
+        }
+                    /**
+         * Get the timebox instance used by the guard.
+         *
+         * @return \Illuminate\Support\Timebox 
+         * @static 
+         */ 
+        public static function getTimebox()
+        {            //Method inherited from \Illuminate\Auth\SessionGuard         
+                        /** @var \Lab404\Impersonate\Guard\SessionGuard $instance */
+                        return $instance->getTimebox();
         }
                     /**
          * Determine if the current user is authenticated. If not, throw an exception.
@@ -9635,12 +9646,12 @@
          * Clones a request and overrides some of its parameters.
          *
          * @return static 
-         * @param array $query The GET parameters
-         * @param array $request The POST parameters
-         * @param array $attributes The request attributes (parameters parsed from the PATH_INFO, ...)
-         * @param array $cookies The COOKIE parameters
-         * @param array $files The FILES parameters
-         * @param array $server The SERVER parameters
+         * @param array|null $query The GET parameters
+         * @param array|null $request The POST parameters
+         * @param array|null $attributes The request attributes (parameters parsed from the PATH_INFO, ...)
+         * @param array|null $cookies The COOKIE parameters
+         * @param array|null $files The FILES parameters
+         * @param array|null $server The SERVER parameters
          * @return static 
          * @static 
          */ 
@@ -17212,12 +17223,19 @@
      * @method static bool isLinux()
      * @method static bool isInApp()
      * @method static bool isBot()
-     * @method static string mobileGrade()
-     * @method static string deviceModel()
+     * @method static bool isIEVersion()
+     * @method static string browserEngine()
+     * @method static string browserName()
+     * @method static string browserVersion()
      * @method static string deviceFamily()
+     * @method static string deviceModel()
+     * @method static string deviceType()
+     * @method static string mobileGrade()
+     * @method static string platformName()
+     * @method static string platformVersion()
+     * @method static string userAgent()
      * @method static string|null platformFamily()
      * @method static string|null browserFamily()
-     * @method static string browserEngine()
      * @method static int browserVersionMajor()
      * @method static int browserVersionMinor()
      * @method static int browserVersionPatch()

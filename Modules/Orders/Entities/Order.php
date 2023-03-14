@@ -37,6 +37,7 @@ class Order extends Model implements HasMedia
         'service_id',
         'country_id',
         'city_id',
+        'loved_order',
     ];
 
     protected $table = 'orders';

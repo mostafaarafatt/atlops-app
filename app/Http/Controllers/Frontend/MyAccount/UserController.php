@@ -46,7 +46,7 @@ class UserController extends Controller
         $user = $this->create($data);
 
         if ($request->hasFile('photo') && $request->file('photo')->isValid()) {
-            $user->addMediaFromRequest('photo')->toMediaCollection('user_image');
+            $user->addMediaFromRequest('photo')->toMediaCollection('avatars');
         }
 
         Auth::login($user);
@@ -57,7 +57,7 @@ class UserController extends Controller
     {
         return User::create([
             'name' => $data['firstName'],
-            'las_name' => $data['lastName'],
+            'last_name' => $data['lastName'],
             'email' => $data['email'],
             'phone' => $data['phone'],
             'dob' => $data['date'],
