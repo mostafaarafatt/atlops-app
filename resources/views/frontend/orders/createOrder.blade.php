@@ -27,7 +27,7 @@
                                                 id="order-img-cont">
                                                 <img src="{{ asset('images/order.svg') }}" width="70px" height="70px"
                                                     class="rounded">
-                                                <input type="file" name="photo[]" id="upload-photo">
+                                                <input type="file" name="photo[]" id="upload-photo" multiple>
                                             </div>
                                             {{-- <label for="upload-photo2"
                                                 class="rounded-circle me-2 ms-4 more-imgs d-flex justify-content-center align-items-center d-none plus">
