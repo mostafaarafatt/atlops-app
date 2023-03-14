@@ -24,7 +24,7 @@ class CreateOrderValidation extends FormRequest
     public function rules()
     {
         return [
-            'photo' => 'required',
+            'photo' => 'required|array',
             'orderName' => 'required',
             'orderDescription' => 'required',
             'startPrice' => 'required|lt:endPrice',
