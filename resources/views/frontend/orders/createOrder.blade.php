@@ -26,19 +26,24 @@
                                             <div class="d-flex justify-content-center align-items-center order-img-cont ms-3"
                                                 id="order-img-cont">
                                                 <img src="{{ asset('images/order.svg') }}" width="70px" height="70px"
-                                                    class="rounded" id="imgOrder">
+                                                    class="rounded">
                                                 <input type="file" name="photo[]" id="upload-photo">
                                             </div>
-                                            <label for="upload-photo2"
+                                            {{-- <label for="upload-photo2"
                                                 class="rounded-circle me-2 ms-4 more-imgs d-flex justify-content-center align-items-center d-none plus">
                                                 <i class="fa-solid fa-plus fa-xl"></i>
-                                            </label>
-                                            <input type="file" name="photo[]" id="upload-photo2" class="d-none" multiple>
+                                            </label> --}}
+                                            {{-- <input type="file" name="photo[]" id="upload-photo2" class="d-none" multiple> --}}
                                             <p class="mb-0 mx-2">ارفق صورة منتجك، لا تزيد عن 5 ميجا</p>
 
                                         </div>
-                                        <label for="upload-photo" class="fw-bold label-img p-2 label-add-image">إرفاق
-                                            صورة</label>
+                                        <label for="upload-photo">
+                                            <span class="fw-bold label-img p-2 label-add-image"> إرفاق صورة </span>
+                                            <span
+                                                class="rounded-circle me-2 ms-4 more-imgs d-flex justify-content-center align-items-center d-none plus">
+                                                <i class="fa-solid fa-plus fa-xl"></i>
+                                            </span>
+                                        </label>
 
                                     </div>
                                     @if ($errors->has('photo'))
@@ -57,8 +62,8 @@
                                     <label class="mb-3 fw-bold">القسم الرئيسي</label>
                                     <input type="text" name="categoryName" value="{{ $category->name }}"
                                         class="form-control" id="" readonly>
-                                    <input type="text" name="categoryId" value="{{ $category->id }}"
-                                        class="form-control" id="" hidden>
+                                    <input type="text" name="categoryId" value="{{ $category->id }}" class="form-control"
+                                        id="" hidden>
 
                                 </div>
                                 <div class="col-md-6 mb-3 ">
@@ -249,15 +254,15 @@
 
     {{-- script for preview images --}}
     <script>
-        $(document).ready(function(e) {
-            $('#upload-photo').change(function() {
-                let reader = new FileReader();
-                reader.onload = (e) => {
-                    $('#preview-image-before-upload').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(this.files[0]);
-            });
-        });
+        // $(document).ready(function(e) {
+        //     $('#upload-photo').change(function() {
+        //         let reader = new FileReader();
+        //         reader.onload = (e) => {
+        //             $('#preview-image-before-upload').attr('src', e.target.result);
+        //         }
+        //         reader.readAsDataURL(this.files[0]);
+        //     });
+        // });
     </script>
 
     {{-- script for countries and towns --}}
@@ -375,40 +380,72 @@
             });
         });
 
+        let selectedFiles = [];
+
         function readURL(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
+            selectedFiles = [...selectedFiles, ...input.files]
+            console.log("INPUT", selectedFiles);
 
-                reader.onload = function(e) {
-                    //alert(e.target.result);
-                    $('#imgOrder').attr('src', e.target.result);
-                }
-                $(".label-add-image").addClass("d-none")
-                $(".plus").removeClass("d-none")
-
-                reader.readAsDataURL(input.files[0]);
+            let orderImgCont;
+            let clonedItem;
+            if (!$("#order-img-cont").attr("class").includes("d-none")) {
+                orderImgCont = $("#order-img-cont");
+                clonedItem = orderImgCont.clone();
+                console.log("TEST 1");
+            } else {
+                orderImgCont = $("#order-img-cont-1");
+                clonedItem = orderImgCont.clone();
+                console.log("TEST 2");
             }
-        }
 
-        $(function() {
-            $("#upload-photo2").change(function() {
-                readURL2(this);
+            selectedFiles.forEach((element, index) => {
+                clonedItem.attr("id", `${clonedItem.attr('id')}-${index+1}`)
+                clonedItem.insertAfter(orderImgCont)
+                clonedItem.children().attr("src", URL.createObjectURL(element))
             });
-        });
+            $("#order-img-cont").children('input').removeAttr('name');
+            $("#order-img-cont").addClass("d-none");
+            $(".label-add-image").addClass("d-none");
+            $(".plus").removeClass("d-none");
 
 
-        function readURL2(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
+            // var reader = new FileReader();
 
-                reader.onload = function(e) {
-                    //alert(e.target.result);
-                    let orderImgCont = $("#order-img-cont")
-                    orderImgCont.clone().insertAfter($("#order-img-cont"))
-                    $('#imgOrder').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(input.files[0]);
-            }
+            // reader.onload = function(e) {
+            //     let orderImgCont = $("#order-img-cont")
+            //     selectedFiles.forEach((element, index) => {
+            //         let clonedItem = orderImgCont.clone();
+            //         clonedItem.attr("id", `${clonedItem.attr('id')}-${index+1}`)
+            //         clonedItem.insertAfter($("#order-img-cont"))
+            //         clonedItem.children().attr("src", URL.createObjectURL(element))
+            //         reader.readAsDataURL(element);
+            //     });
+            //     orderImgCont.addClass("d-none");
+            // }
+            // $(".label-add-image").addClass("d-none");
+            // $(".plus").removeClass("d-none");
+
         }
+
+        // $(function() {
+        //     $("#upload-photo2").change(function() {
+        //         readURL2(this);
+        //     });
+        // });
+
+
+        // function readURL2(input) {
+        //     if (input.files && input.files[0]) {
+        //         var reader = new FileReader();
+
+        //         reader.onload = function(e) {
+        //             //alert(e.target.result);
+        //             let orderImgCont = $("#order-img-cont")
+        //             orderImgCont.clone().insertAfter($("#order-img-cont"))
+        //             $('#imgOrder').attr('src', e.target.result);
+        //         }
+        //         reader.readAsDataURL(input.files[0]);
+        //     }
+        // }
     </script>
 @endsection
