@@ -30,6 +30,11 @@
                             {{ session()->get('error_facebook') }}
                         </div>
                     @endif
+                    @if (session()->has('errors'))
+                        <div class="alert alert-danger">
+                            {{ session()->get('errors') }}
+                        </div>
+                    @endif
                     <form method="POST" action="{{ route('login.custom') }}" class="bg-white p-5 login-form form-body">
                         @csrf
                         <h5 class="modal-title w-100 fw-bold mb-4">تسجيل الدخول</h5>
@@ -38,9 +43,6 @@
                             <div class="mb-3">
                                 <label class="mb-3 fw-bold">البريد الالكتروني</label>
                                 <input type="email" name="email" class="form-control" id="Username">
-                                @if ($errors->has('email'))
-                                    <span class="text-danger">{{ $errors->first('email') }}</span>
-                                @endif
                             </div>
 
                             <div class="mb-3 input-box">
@@ -48,9 +50,6 @@
                                 <input type="password" name="password" class="form-control password id_password"
                                     id="" placeholder="">
                                 <i class="eye-show fas fa-eye-slash togglePassword" id=""></i>
-                                @if ($errors->has('password'))
-                                    <span class="text-danger">{{ $errors->first('password') }}</span>
-                                @endif
                             </div>
 
                             <div class="mb-2" style="direction: ltr;">
@@ -104,13 +103,13 @@
     </div>
 
 
-    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
     <script src="https://kit.fontawesome.com/b4c05b8dbd.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
     </script>
-    <script src="js/mixitup.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="{{ asset('js/mixitup.min.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
 
 
 </body>

@@ -49,7 +49,7 @@ class OrderController extends Controller
 
         if ($images = $request->file('photo')) {
             foreach ($images as $image) {
-                $order->addMedia($image)->toMediaCollection('order_images');
+                $order->addMedia($image)->toMediaCollection('orders');
             }
         }
 

@@ -74,7 +74,13 @@ class Order extends Model implements HasMedia
      */
     public function getImage()
     {
-        return $this->getFirstMediaUrl('orders');
+        // return $this->getFirstMediaUrl('orders');
+        return $this->getFirstMediaUrl('orders') ? asset($this->getFirstMediaUrl('orders')) : asset('/images/user.png');
+    }
+
+    public function getImagesAttribute()
+    {
+        return $this->getMediaResource('orders');
     }
 
 

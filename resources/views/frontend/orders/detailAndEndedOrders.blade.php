@@ -5,7 +5,7 @@
                 <div class="col-lg-8">
                     <div class="publisher-info d-flex align-items-center justify-content-between bg-white p-3 mb-3">
                         <div class="name  d-flex align-items-center ">
-                            <img src="{{ $order->user->getFirstMediaUrl('user_image') }}" class="rounded-circle" width="100px"
+                            <img src="{{ $order->user->avater }}" class="rounded-circle" width="100px"
                                 height="100">
                             <h6 class=" mb-0 me-3">{{ $order->user?->name }}
                                 {{ $order->user?->last_name }}</h6>
@@ -32,44 +32,41 @@
                         </div>
 
                         <p class="fw-bold"style="font-size:12px">{{ $order->description }} </p>
+
+
+
+
                         <div id="carouselExampleIndicators" class="carousel slide order-slider" data-bs-ride="carousel">
                             <div class="carousel-indicators">
-                                {{-- @forelse ($order->photo_name as $photo) --}}
-                                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
-                                        class="active" aria-current="true" aria-label="Slide 1"></button>
-                                {{-- @empty
-                                @endforelse --}}
-
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                                    class="active" aria-current="true" aria-label="Slide 1"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                                    aria-label="Slide 2"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                                    aria-label="Slide 3"></button>
                             </div>
-
                             <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img src=""
-                                        class="d-block w-100 " height="300" alt="...">
-                                    <div class="carousel-caption d-flex align-items-center px-3 py-2">
-                                        <p class="mb-0">السعر المتوقع:
-                                            <br> {{ $order->expected_start_price }} - {{ $order->expected_end_price }}
-                                        </p>
-                                    </div>
-                                </div>
-
-                                {{-- @for ($i = 1; $i < count($order->photo_name); $i++) --}}
-                                    <div class="carousel-item">
-                                        <img src=""
-                                            class="d-block w-100 " height="300" alt="...">
+                                {{-- @foreach ($order as $order) --}}
+                                    <div class="carousel-item active">
+                                        <img src="{{ $order->getImage() }}" class="d-block w-100 " height="300"
+                                            alt="...">
                                         <div class="carousel-caption d-flex align-items-center px-3 py-2">
                                             <p class="mb-0">السعر المتوقع:
                                                 <br> {{ $order->expected_start_price }} - {{ $order->expected_end_price }}
                                             </p>
                                         </div>
                                     </div>
-                                {{-- @endfor --}}
+                                {{-- @endforeach --}}
+
+
+
 
                             </div>
 
-
-
                         </div>
+
+
+
                     </div>
                 </div>
                 <div class="col-lg-4">
