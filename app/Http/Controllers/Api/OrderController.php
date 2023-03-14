@@ -14,14 +14,19 @@ class OrderController extends Controller
 {
     public function filterOrder(Request $request)
     {
-
         $request->validate([
             'category_id' => ['required', 'numeric']
         ]);
 
         $orders = Order::where('category_id', $request->category_id)->where('type', 'individual')->get();
         // dd($orders);
-        return response()->json($orders);
+        $orderHtml = view('frontend.orders.render.filterOrder', compact('orders'))->render();
+        // dd($orderHtml);
+        return response()->json([
+            'orderHtml' => $orderHtml,
+        ], 200);
+
+        // return response()->json($orders);
     }
 
     public function arrangeOrder(Request $request)
@@ -30,20 +35,23 @@ class OrderController extends Controller
         if ($request->category_id == 0) {
             if ($request->value == 1) {
                 $orders = Order::where('type', "individual")->orderBy('created_at', "DESC")->get();
-                return response()->json($orders);
+                // return response()->json($orders);
             } else {
                 $orders = Order::where('type', "individual")->orderBy('created_at', "asc")->get();
-                return response()->json($orders);
+                // return response()->json($orders);
             }
         } else {
             if ($request->value == 1) {
                 $orders = Order::where('category_id', $request->category_id)->where('type', "individual")->orderBy('created_at', "DESC")->get();
-                return response()->json($orders);
+                // return response()->json($orders);
             } else {
                 $orders = Order::where('category_id', $request->category_id)->where('type', "individual")->orderBy('created_at', "asc")->get();
-                return response()->json($orders);
+                // return response()->json($orders);
             }
         }
+
+        $orderHtml = view('frontend.orders.render.filterOrder', compact('orders'))->render();
+        return response()->json(['orderHtml' => $orderHtml,], 200);
     }
 
     public function countryOrder(Request $request)
@@ -67,7 +75,9 @@ class OrderController extends Controller
             }
         }
 
-        return response()->json($orders);
+        // return response()->json($orders);
+        $orderHtml = view('frontend.orders.render.filterOrder', compact('orders'))->render();
+        return response()->json(['orderHtml' => $orderHtml,], 200);
     }
 
     public function townOrder(Request $request)
@@ -111,7 +121,9 @@ class OrderController extends Controller
         }
 
         // dd($orders);
-        return response()->json($orders);
+        // return response()->json($orders);
+        $orderHtml = view('frontend.orders.render.filterOrder', compact('orders'))->render();
+        return response()->json(['orderHtml' => $orderHtml,], 200);
     }
 
     public function addtowishlist(Request $request)
