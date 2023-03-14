@@ -45,7 +45,7 @@
                                         <div class="row bg-white order-card mx-2">
                                             <div class="col-md-2 d-flex align-items-center justify-content-center p-2">
                                                 <a href="{{ route('orderdetails', ['id' => $order->id]) }}">
-                                                    <img src=''
+                                                    <img src='{{ $order->getImage() }}'
                                                         class=" rounded-circle img-fluid img-fluid" alt="..."
                                                         width="120px" height="120px">
 
@@ -92,8 +92,8 @@
                                     <div class="col-sm-10 col-xs-10 my-2">
                                         <div class="row bg-white order-card mx-2">
                                             <div class="col-md-2 d-flex align-items-center justify-content-center p-2">
-                                                <a href="orderDetails.html">
-                                                    <img src=''
+                                                <a href="{{ route('orderdetails', ['id' => $order->id]) }}">
+                                                    <img src='{{ $order->getImage() }}'
                                                         class=" rounded-circle img-fluid img-fluid" alt="..."
                                                         width="120px" height="120px">
 
@@ -102,7 +102,7 @@
                                             <div class="col-md-10 d-flex align-items-center">
                                                 <div class="card-body pt-3 ">
                                                     <div class="d-flex justify-content-between align-items-end">
-                                                        <a href="orderDetails.html">
+                                                        <a href="{{ route('orderdetails', ['id' => $order->id]) }}">
                                                             <h5 class="card-title">{{ $order->name }}</h5>
                                                         </a>
                                                         <a href="{{ route('endOrderDone', ['id' => $order->id]) }}"
@@ -142,8 +142,8 @@
                             <div class="col-sm-10 col-xs-10 my-2">
                                 <div class="row bg-white order-card mx-2">
                                     <div class="col-md-2 d-flex align-items-center justify-content-center p-2">
-                                        <a href="orderDetails.html">
-                                            <img src=''
+                                        <a href="{{ route('orderdetails', ['id' => $order->id]) }}">
+                                            <img src='{{ $order->getImage() }}'
                                                 class=" rounded-circle img-fluid img-fluid" alt="..." width="120px"
                                                 height="120px">
 
@@ -152,7 +152,7 @@
                                     <div class="col-md-10 d-flex align-items-center">
                                         <div class="card-body pt-3 ">
                                             <div class="d-flex justify-content-between align-items-end">
-                                                <a href="orderDetails.html">
+                                                <a href="{{ route('orderdetails', ['id' => $order->id]) }}">
                                                     <h5 class="card-title">{{ $order->name }}</h5>
                                                 </a>
                                                 <a href="{{ route('rePublishOrder',['id'=>$order->id]) }}" class="text-dark fw-bold">
@@ -180,8 +180,8 @@
                             <div class="col-sm-10 col-xs-10 my-2">
                                 <div class="row bg-white order-card mx-2">
                                     <div class="col-md-2 d-flex align-items-center justify-content-center p-2">
-                                        <a href="orderDetails.html">
-                                            <img src=''
+                                        <a href="{{ route('orderdetails', ['id' => $order->id]) }}">
+                                            <img src='{{ $order->getImage() }}'
                                                 class=" rounded-circle img-fluid img-fluid" alt="..." width="120px"
                                                 height="120px">
 
@@ -190,7 +190,7 @@
                                     <div class="col-md-10 d-flex align-items-center">
                                         <div class="card-body pt-3 ">
                                             <div class="d-flex justify-content-between align-items-end">
-                                                <a href="orderDetails.html">
+                                                <a href="{{ route('orderdetails', ['id' => $order->id]) }}">
                                                     <h5 class="card-title">{{ $order->name }}</h5>
                                                 </a>
                                                 <a href="{{ route('rePublishOrder',['id'=>$order->id]) }}" class="text-dark fw-bold">

@@ -335,7 +335,7 @@
                             'user_id': $user_id
                         },
                         success: function(data) {
-                           // alert('تم اضافه المنتج الى المفضلة')
+                            // alert('تم اضافه المنتج الى المفضلة')
                         }
                     })
 
@@ -350,7 +350,7 @@
                             'user_id': $user_id
                         },
                         success: function(data) {
-                           // alert('تم حذف المنتج من المفضلة')
+                            // alert('تم حذف المنتج من المفضلة')
                         }
                     })
                 }
@@ -376,52 +376,7 @@
                 success: function(data) {
                     console.log(data);
                     $("#content").empty();
-                    data.forEach(element => {
-                        console.log(element);
-                        var img = "{{ asset('') }}";
-                        var route = window.location.origin + '/orderdetails/' + element.id;
-                        console.log(route);
-                        var ele = `
-                        <div class="col-md-12 my-2">
-                            <div class="card mb-3 order-card">
-                                <div class="row g-0">
-                                    <div class="col-md-2 d-flex align-items-center justify-content-center p-2">
-                                        <a href="${route}">
-                                            <img src='${img}'
-                                                class=" rounded-circle img-fluid img-fluid" alt="..." width="120px"
-                                                height="120px">
-                                        </a>
-                                    </div>
-                                    <div class="col-md-10">
-                                        <div class="card-body">
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <a href="${route}">
-                                                    <h5 id="orderName" class="card-title"> ${element.name} </h5>
-                                                </a>
-                                                <button>
-                                                    <i class="fa-solid fa-heart fa-2xl"></i>
-                                                </button>
-
-                                            </div>
-                                            <small class="text-secondary fw-bold">${element.name} , ${element.name}</small>
-                                            <p class="text-dark">${element.orderDescription}</p>
-                                            <div class="d-flex justify-content-between more-details">
-                                                <p class="price fw-bold">السعر المتوقع: ${element.expected_start_price} ألف -
-                                                    ${element.expected_end_price} ألف</p>
-                                                <strong class="text-secondary">تم النشر فى ${element.created_at}</strong>
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        `;
-
-                        $("#content").append(ele);
-                    });
-
+                    $('#content').append(data.orderHtml);
                 },
             })
         }
@@ -445,53 +400,9 @@
                             'category_id': cat_id,
                         },
                         success: function(data) {
+                            console.log(data);
                             $("#content").empty();
-                            data.forEach(element => {
-                                console.log(element);
-                                var img = "{{ asset('') }}";
-                                var route = window.location.origin + '/orderdetails/' +
-                                    element.id;
-                                console.log(route);
-                                var ele = `
-                        <div class="col-md-12 my-2">
-                            <div class="card mb-3 order-card">
-                                <div class="row g-0">
-                                    <div class="col-md-2 d-flex align-items-center justify-content-center p-2">
-                                        <a href="${route}">
-                                            <img src='${img}'
-                                                class=" rounded-circle img-fluid img-fluid" alt="..." width="120px"
-                                                height="120px">
-                                        </a>
-                                    </div>
-                                    <div class="col-md-10">
-                                        <div class="card-body">
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <a href="${route}">
-                                                    <h5 id="orderName" class="card-title"> ${element.name} </h5>
-                                                </a>
-                                                <button>
-                                                    <i class="fa-solid fa-heart fa-2xl"></i>
-                                                </button>
-
-                                            </div>
-                                            <small class="text-secondary fw-bold">${element.name} , ${element.name}</small>
-                                            <p class="text-dark">${element.orderDescription}</p>
-                                            <div class="d-flex justify-content-between more-details">
-                                                <p class="price fw-bold">السعر المتوقع: ${element.expected_start_price} ألف -
-                                                    ${element.expected_end_price} ألف</p>
-                                                <strong class="text-secondary">تم النشر فى ${element.created_at}</strong>
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        `;
-
-                                $("#content").append(ele);
-                            });
+                            $('#content').append(data.orderHtml);
                         },
                     });
                 } else {
@@ -520,53 +431,9 @@
                             'sort_id': sort_id
                         },
                         success: function(data) {
+                            console.log(data);
                             $("#content").empty();
-                            data.forEach(element => {
-                                console.log(element);
-                                var img = "{{ asset('') }}";
-                                var route = window.location.origin + '/orderdetails/' +
-                                    element.id;
-                                console.log(route);
-                                var ele = `
-                        <div class="col-md-12 my-2">
-                            <div class="card mb-3 order-card">
-                                <div class="row g-0">
-                                    <div class="col-md-2 d-flex align-items-center justify-content-center p-2">
-                                        <a href="${route}">
-                                            <img src='${img}'
-                                                class=" rounded-circle img-fluid img-fluid" alt="..." width="120px"
-                                                height="120px">
-                                        </a>
-                                    </div>
-                                    <div class="col-md-10">
-                                        <div class="card-body">
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <a href="${route}">
-                                                    <h5 id="orderName" class="card-title"> ${element.name} </h5>
-                                                </a>
-                                                <button>
-                                                    <i class="fa-solid fa-heart fa-2xl"></i>
-                                                </button>
-
-                                            </div>
-                                            <small class="text-secondary fw-bold">${element.name} , ${element.name}</small>
-                                            <p class="text-dark">${element.orderDescription}</p>
-                                            <div class="d-flex justify-content-between more-details">
-                                                <p class="price fw-bold">السعر المتوقع: ${element.expected_start_price} ألف -
-                                                    ${element.expected_end_price} ألف</p>
-                                                <strong class="text-secondary">تم النشر فى ${element.created_at}</strong>
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        `;
-
-                                $("#content").append(ele);
-                            });
+                            $('#content').append(data.orderHtml);
                         },
                     });
                 } else {
@@ -595,53 +462,9 @@
                             'country_id': country_id
                         },
                         success: function(data) {
+                            console.log(data);
                             $("#content").empty();
-                            data.forEach(element => {
-                                console.log(element);
-                                var img = "{{ asset('') }}";
-                                var route = window.location.origin + '/orderdetails/' +
-                                    element.id;
-                                console.log(route);
-                                var ele = `
-                        <div class="col-md-12 my-2">
-                            <div class="card mb-3 order-card">
-                                <div class="row g-0">
-                                    <div class="col-md-2 d-flex align-items-center justify-content-center p-2">
-                                        <a href="${route}">
-                                            <img src='${img}'
-                                                class=" rounded-circle img-fluid img-fluid" alt="..." width="120px"
-                                                height="120px">
-                                        </a>
-                                    </div>
-                                    <div class="col-md-10">
-                                        <div class="card-body">
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <a href="${route}">
-                                                    <h5 id="orderName" class="card-title"> ${element.name} </h5>
-                                                </a>
-                                                <button>
-                                                    <i class="fa-solid fa-heart fa-2xl"></i>
-                                                </button>
-
-                                            </div>
-                                            <small class="text-secondary fw-bold">${element.name} , ${element.name}</small>
-                                            <p class="text-dark">${element.orderDescription}</p>
-                                            <div class="d-flex justify-content-between more-details">
-                                                <p class="price fw-bold">السعر المتوقع: ${element.expected_start_price} ألف -
-                                                    ${element.expected_end_price} ألف</p>
-                                                <strong class="text-secondary">تم النشر فى ${element.created_at}</strong>
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        `;
-
-                                $("#content").append(ele);
-                            });
+                            $('#content').append(data.orderHtml);
                         },
                     });
                 } else {

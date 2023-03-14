@@ -5,6 +5,7 @@
                 <div class="col-lg-8">
                     <div class="publisher-info d-flex align-items-center justify-content-between bg-white p-3 mb-3">
                         <div class="name  d-flex align-items-center ">
+
                             <img src="{{ $order->user->avatar }}" class="rounded-circle" width="100px" height="100">
                             <h6 class=" mb-0 me-3">{{ $order->user?->name }}
                                 {{ $order->user?->last_name }}</h6>
