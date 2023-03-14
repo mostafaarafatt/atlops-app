@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend\MyAccount;
 
+use App\Events\OtpRegister;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginValidation;
 use App\Http\Requests\RegisterValidation;
@@ -9,6 +10,7 @@ use App\Http\Requests\ValidateEmail;
 use App\Http\Requests\ValidateOtpcode;
 use App\Http\Requests\ValidationPassword;
 use App\Models\Category;
+use App\Services\SmsService;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -44,6 +46,19 @@ class UserController extends Controller
     {
         $data = $request->all();
         $user = $this->create($data);
+        $code = rand(10000, 99999);
+        $otp = $user->otps()->updateOrCreate(
+            [
+                'target' => $data['phone'],
+            ],
+            [
+                'target' => $data['phone'],
+                'type' => 'phone',
+                'code' => $code,
+                'expires_at' => now()->addSeconds(300),
+            ]
+        );
+        event(new OtpRegister($user, $code, $otp));
 
         if ($request->hasFile('photo') && $request->file('photo')->isValid()) {
             $user->addMediaFromRequest('photo')->toMediaCollection('avatars');
